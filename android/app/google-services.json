@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "598142140424",
+    "project_id": "remember-1efb3",
+    "storage_bucket": "remember-1efb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598142140424:android:0eecad139aedcf8520d1bd",
+        "android_client_info": {
+          "package_name": "com.charity.remember"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "598142140424-ndlucf8tjpk3drau98lhsto52pd5po1v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDQO7JNYy_UFouXJ4qQAa99V7rdUCli74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "598142140424-ndlucf8tjpk3drau98lhsto52pd5po1v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
