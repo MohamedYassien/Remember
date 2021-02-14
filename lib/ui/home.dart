@@ -35,9 +35,79 @@ class _HomeState extends State<Home> {
           bottom: false,
           child: Stack(
             children: <Widget>[
+              Image.asset(
+                'assets/ic_home.png',
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                fit: BoxFit.fill,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(right: 5),
+                    child: ButtonTheme(
+                      minWidth: 5,
+                      height: 5,
+                      child: FlatButton(
+                        padding: EdgeInsets.all(16),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        onPressed: () {
+                          setState(() {
+                            appLanguage.changeLanguage(Locale("ar"));
+                          });
+                        },
+                        child: Text(
+                          AppLocalizations.of(context).translate('ar_lang'),
+                          style: TextStyle(
+                            color: themeColor,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 1,
+                    height: 20,
+                    color: Colors.grey,
+                  ),
+                  Container(
+                      child: ButtonTheme(
+                          minWidth: 5,
+                          height: 5,
+                          child: FlatButton(
+                              padding: EdgeInsets.all(16),
+                              materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                              onPressed: () {
+                                setState(() {
+                                  appLanguage.changeLanguage(Locale("en"));
+                                });
+                              },
+                              child: Text(
+                                "En",
+                                style: TextStyle(
+                                  color: themeColor,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ))))
+                ],
+              ),
+
               Positioned(
                 width: MediaQuery.of(context).size.width,
-                top: 330.0,
+                top: MediaQuery
+                    .of(context)
+                    .size
+                    .height * .6,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
@@ -48,8 +118,8 @@ class _HomeState extends State<Home> {
                         margin: EdgeInsets.all(16),
                         child: RaisedButton(
                             child: Text(
-                            AppLocalizations.of(context)
-                                .translate('login'),
+                              AppLocalizations.of(context)
+                                  .translate('login'),
                               style: TextStyle(
                                 color: remWhite,
                                 fontWeight: FontWeight.normal,
@@ -57,24 +127,26 @@ class _HomeState extends State<Home> {
                             ),
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.circular(button_BorderRadius),
+                              BorderRadius.circular(button_BorderRadius),
                             ),
                             color: themeColor,
                             onPressed: () => {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) => (
                                       LoginScreen(
-                                    ))))
+                                      ))))
                             })),
-
                     Container(
-                        width: MediaQuery.of(context).size.width *
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width *
                             button_width_percentage,
                         height: button_height,
                         child: RaisedButton(
                             child: Text(
-                          AppLocalizations.of(context)
-                              .translate('sign_up'),
+                              AppLocalizations.of(context)
+                                  .translate('sign_up'),
                               style: TextStyle(
                                 color: remWhite,
                                 fontWeight: FontWeight.normal,
@@ -82,15 +154,25 @@ class _HomeState extends State<Home> {
                             ),
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.circular(button_BorderRadius),
+                              BorderRadius.circular(button_BorderRadius),
                             ),
                             color: themeColor,
-                            onPressed: () => {
+                            onPressed: () =>
+                            {
                               Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => (
+                                  MaterialPageRoute(builder: (context) =>
+                                  (
                                       SignUpScreen(
                                       ))))
-                                })),
+                            })),
+                    Container(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width *
+                          button_width_percentage,
+                      height: button_height,
+                    )
                   ],
                 ),
               ),

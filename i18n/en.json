@@ -45,5 +45,9 @@
   "first_name_validate": " Please enter a valid first name.",
   "last_name_validate": " Please enter a valid last name.",
   "email_validate": " Email format is invalid",
-  "pass_validate": " Password must be longer than 8 characters"
+  "pass_validate": " Password must be longer than 8 characters",
+  "side_menu": "  choose from side menu",
+  "eb": " My Worship",
+  "lovers": " My Lovers",
+  "setting": " Setting"
 }
