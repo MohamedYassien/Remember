@@ -53,32 +53,6 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/app_icon.png
-    - assets/vodafone.png
-    - assets/avatar.png
-    - assets/send.png
-    - assets/bg_splash.webp
-    - assets/vodafoneRed.png
-    - assets/vodafoneWhite.png
-    - assets/white.png
-    - assets/BG.png
-    - assets/ic_vodafone.png
-    - assets/vodafone_larg.png
-    - assets/side_bg.png
-    - assets/ic_back.png
-    - assets/logout.png
-    - assets/side-top.png
-    - assets/red.png
-    - assets/bg-sm.png
-    - assets/ready.png
-    - assets/ic_next.png
-    - assets/bg_c.png
-    - assets/home.png
-    - assets/action-plan.png
-    - assets/network.png
-    - assets/internet.png
-    - assets/grid.png
-    - assets/ic_menu.png
     - assets/ic_splash.png
     - i18n/en.json
     - i18n/ar.json
