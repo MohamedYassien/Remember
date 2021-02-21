@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:remember/AppLocalizations.dart';
 
 String emailValidator(String value,BuildContext context) {
@@ -58,4 +60,49 @@ String getMessageFromErrorCode(FirebaseAuthException err) {
       return "Login failed. Please try again.";
       break;
   }
+}
+
+void saveUid(String uid) async {
+  final storage = FlutterSecureStorage();
+  await storage.write(key: 'uid', value: uid);
+}
+
+Widget customCard(var obj, BuildContext context, {onTapYes}) {
+  return GestureDetector(
+    onTap: () => onTapYes,
+    child: Container(
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 0.5,
+            blurRadius: 9,
+            offset: Offset(0, 3), // changes position of shadow
+          )
+        ],
+      ),
+      child: ClipPath(
+        clipper: ShapeBorderClipper(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15))),
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                    obj.action,
+                    style: TextStyle(color: Colors.black, fontSize: 16)),
+
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
 }

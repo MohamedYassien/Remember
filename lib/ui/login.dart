@@ -214,11 +214,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               setState(() {
                                 isLoading = false;
                               }),
+                              saveUid(currentUser.user.uid),
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           HomePage(
+
 //                                      title: result["fname"] +
 //                                          "'s Tasks",
 //                                      uid: currentUser.uid,

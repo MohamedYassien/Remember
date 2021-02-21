@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../app_constants.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -34,7 +32,7 @@ class SplashScreenState extends State<SplashScreen> {
     ]);
   }
 
-  final int splashDuration = 10;
+  final int splashDuration = 2;
 
   countDownTime() async {
     return Timer(Duration(seconds: splashDuration), () {

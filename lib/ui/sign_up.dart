@@ -277,16 +277,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       setState(() {
                         isLoading = false;
                       }),
+                      saveUid(currentUser.user.uid),
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
                                   HomePage(
-//    title:
-//    firstNameInputController
-//        .text +
-//    "'s Tasks",
-//    uid: currentUser.uid,
+
                                   )),
                               (_) => false),
                       firstNameInputController.clear(),
