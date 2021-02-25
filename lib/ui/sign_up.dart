@@ -277,7 +277,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       setState(() {
                         isLoading = false;
                       }),
-                      saveUid(currentUser.user.uid),
+                      saveUid(currentUser.user.uid,
+                          firstNameInputController.text + "" +
+                              lastNameInputController.text),
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(

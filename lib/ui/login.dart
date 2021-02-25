@@ -214,7 +214,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               setState(() {
                                 isLoading = false;
                               }),
-                              saveUid(currentUser.user.uid),
+                              saveUid(currentUser.user.uid,
+                                  result["fname"] + '' + result["lname"]),
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(

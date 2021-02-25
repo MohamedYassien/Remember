@@ -66,31 +66,10 @@ class _MyHomePageState extends State<MyApp> {
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
-            title: 'Flutter Demo',
+            title: 'Remember',
             debugShowCheckedModeBanner: false,
             routes: <String, WidgetBuilder>{
               '/Home': (BuildContext context) => Home(),
-//        '/LiveIncident': (BuildContext context) =>
-//            LiveIncident(LiveIncidentChartResponse()),
-//        '/TechnologyEvents': (BuildContext context) =>
-//            ChangeManagement(),
-//        '/SearchResults': (BuildContext context) => SearchResults(
-//          /*isLast24Hours: false,*/
-//        ),
-//        '/IncidentManagementDashboard': (BuildContext context) =>
-//            IncidentManagement(),
-//        '/LiveNWIncidents': (BuildContext context) => LiveNWIncidents(),
-//        '/RO': (BuildContext context) => RO(),
-//        '/NWAndIT': (BuildContext context) => NWAndIT(),
-//        '/ClosedChanges': (BuildContext context) => ClosedChanges(),
-//        '/ClosedIncident': (BuildContext context) => CloseIncident(),
-//        '/Notification': (BuildContext context) => NotificationScreen(),
-//        '/NotificationDetails': (BuildContext context) =>
-//            NotificationDetails(),
-//        '/HomeDtSMS': (BuildContext context) => MyHomeDTSMSPage(),
-//        '/HubScreen': (BuildContext context) => HubScreen(),
-//        '/PowerNotificationScreen': (BuildContext context) =>
-//            PowerNotificationScreen(),
             },
             theme: ThemeData(
               visualDensity: VisualDensity.adaptivePlatformDensity,
