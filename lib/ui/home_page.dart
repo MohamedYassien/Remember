@@ -340,6 +340,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void getPoints() {
+    DateTime now = DateTime.now();
+    var formatter = new DateFormat('yyyy-MM-dd');
+    String date = formatter.format(now);
     var firebaseUser = FirebaseAuth.instance.currentUser;
 
     FirebaseFirestore.instance
@@ -347,7 +350,7 @@ class _HomePageState extends State<HomePage> {
         .get()
         .then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
-        if (result.id.contains(firebaseUser.uid.toString())) {
+        if (result.id.contains(firebaseUser.uid.toString() + date)) {
           print(result.data());
           setState(() {
             pointsList.add(Points(

@@ -118,6 +118,47 @@ Widget customCard(var obj, BuildContext context, {onTapYes}) {
   );
 }
 
+Widget customCardSumResult(var obj, BuildContext context, {onTapYes}) {
+  return GestureDetector(
+    onTap: () => onTapYes,
+    child: Container(
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 0.5,
+            blurRadius: 9,
+            offset: Offset(0, 3), // changes position of shadow
+          )
+        ],
+      ),
+      child: ClipPath(
+        clipper: ShapeBorderClipper(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15))),
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                    '${AppLocalizations.of(context)
+                        .translate('result_sum')}''$obj',
+                    style: TextStyle(color: Colors.black, fontSize: 16)),
+
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 Widget customCardPoint(var obj, BuildContext context, {onTapYes}) {
   return GestureDetector(
     onTap: () => onTapYes,
