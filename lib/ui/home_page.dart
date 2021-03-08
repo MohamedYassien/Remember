@@ -8,7 +8,9 @@ import 'package:intl/intl.dart';
 import 'package:remember/model/actions.dart';
 import 'package:remember/model/points.dart';
 import 'package:remember/ui/action_screen.dart';
+import 'package:remember/ui/admin_screen.dart';
 import 'package:remember/ui/my_action.dart';
+import 'package:remember/ui/my_suggestion.dart';
 import 'package:remember/ui/points_details.dart';
 
 import '../AppLocalizations.dart';
@@ -106,8 +108,10 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: Text(AppLocalizations.of(context).translate('sug')),
                 onTap: () {
-                  // Update the state of the app.
-                  // ...
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MySuggestion()));
                 },
               ),
               Divider(
@@ -131,10 +135,10 @@ class _HomePageState extends State<HomePage> {
                 title:
                 Text(AppLocalizations.of(context).translate('admin')),
                 onTap: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AddActionScreen()));
+                          builder: (context) => AdminPanel()));
                 },
               )
                   : SizedBox(),

@@ -35,8 +35,7 @@ class _AddActionScreenState extends State<AddActionScreen> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.of(context).pop();
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
@@ -138,8 +137,7 @@ class _AddActionScreenState extends State<AddActionScreen> {
   }
 
   Future<bool> _onWillPop() {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+    Navigator.of(context).pop();
     return Future(() => false);
   }
 }
