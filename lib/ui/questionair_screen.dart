@@ -1,28 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:remember/model/questions.dart';
+import 'package:remember/model/questionnaire.dart';
 import 'package:remember/ui/admin_screen.dart';
-import 'package:remember/ui/suggestion_details.dart';
-import 'package:remember/ui/user_suggestion.dart';
+import 'package:remember/ui/questionnair_details.dart';
+import 'package:remember/ui/questionnair_result.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
 
-class SuggestionsScreen extends StatefulWidget {
+class QuestionnaireScreen extends StatefulWidget {
   @override
-  _SuggestionsScreenState createState() => _SuggestionsScreenState();
+  _QuestionnaireScreenState createState() => _QuestionnaireScreenState();
 }
 
-class _SuggestionsScreenState extends State<SuggestionsScreen> {
+class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   bool isLoading = false;
   bool hasData = false;
-  List<Questions> suggestionList = [];
+  List<QuestionnaireModel> questionnaireList = [];
 
   @override
   void initState() {
     super.initState();
-    getSuggestions();
+    getQuestionnaire();
   }
 
   @override
@@ -36,12 +36,8 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          AdminPanel(
-                          )));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => AdminPanel()));
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
@@ -49,7 +45,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
           centerTitle: true,
           elevation: 0,
           title: Text(
-            AppLocalizations.of(context).translate('add_sug'),
+            AppLocalizations.of(context).translate('add_quest'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -62,7 +58,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => SuggestionDetails()));
+                          builder: (context) => QuestionnairDetails()));
                 })
           ],
         ),
@@ -72,12 +68,12 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
               : hasData
                   ? Column(
                       children: [
-                        suggestionListWidget(context, suggestionList),
+                        questionnaireListWidget(context, questionnaireList),
                       ],
                     )
                   : Center(
                       child: Text(
-                          AppLocalizations.of(context).translate('no_sugg')),
+                          AppLocalizations.of(context).translate('no_quest')),
                     ),
         ),
       ),
@@ -86,15 +82,12 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
 
   Future<bool> _onWillPop() {
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                AdminPanel(
-                )));
+        context, MaterialPageRoute(builder: (context) => AdminPanel()));
     return Future(() => false);
   }
 
-  Widget suggestionListWidget(BuildContext context, List<Questions> _list) {
+  Widget questionnaireListWidget(
+      BuildContext context, List<QuestionnaireModel> _list) {
     // backing data
     final size = MediaQuery.of(context).size;
     return Expanded(
@@ -110,20 +103,25 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
     );
   }
 
-  void getSuggestions() {
+  void getQuestionnaire() {
     FirebaseFirestore.instance
-        .collection("suggestions")
+        .collection("questionnaires")
         .get()
         .then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
         print(result.data());
+        List<String> elementList = [];
+        elementList.clear();
+        result.data()["element"].forEach((i) {
+          elementList.add(i);
+//                  print('profile$elementList');
+        });
         setState(() {
-          suggestionList.add(Questions(
-              question: result.data()["suggestion"],
-              date: result.data()["date"]));
+          questionnaireList.add(QuestionnaireModel(
+              question: result.data()["question"], element: elementList));
         });
       });
-      if (suggestionList.isNotEmpty) {
+      if (questionnaireList.isNotEmpty) {
         setState(() {
           hasData = true;
           isLoading = true;
@@ -163,7 +161,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
             child: Container(
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(5),
-              child: Text(suggestionList[index].question,
+              child: Text(questionnaireList[index].question,
                   style: TextStyle(color: Colors.black, fontSize: 16)),
             ),
           ),
@@ -172,8 +170,9 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => UserSuggestions(
-                        questions: suggestionList[index].question,
+                  builder: (context) => QuestionnaireResultScreen(
+                        questionnaire: questionnaireList[index].question,
+                        elementList: questionnaireList[index].element,
                       )));
         });
   }

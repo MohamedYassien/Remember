@@ -6,8 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:remember/AppLocalizations.dart';
+import 'package:remember/ui/competitor_results.dart';
 import 'package:remember/ui/home.dart';
 import 'package:remember/ui/splash.dart';
+import 'package:remember/ui/voting.dart';
 
 import 'AppLanguage.dart';
 

@@ -1,35 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:remember/ui/action_screen.dart';
+import 'package:intl/intl.dart';
+import 'package:remember/ui/questionair_screen.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
 
-class ActionDetails extends StatefulWidget {
+class QuestionnairDetails extends StatefulWidget {
   @override
-  _ActionDetailsState createState() => _ActionDetailsState();
+  _QuestionnairDetailsState createState() => _QuestionnairDetailsState();
 }
 
-class _ActionDetailsState extends State<ActionDetails> {
+class _QuestionnairDetailsState extends State<QuestionnairDetails> {
   final GlobalKey<FormState> _detailsFormKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController _textEditingControllerName = TextEditingController();
   TextEditingController _textEditingControllerElement = TextEditingController();
-  TextEditingController _textEditingControllerPoint = TextEditingController();
   final focus = FocusNode();
   bool isEnableName = true;
   bool isEnableSaveName = true;
-  bool isEnableElement = true;
-  bool isEnableSaveElement = true;
-  bool isEnablePoint = true;
-  bool isEnableSavePoint = true;
+  bool isMulti = false;
+
   String name;
-  String point = '0';
 
   List<String> elementList = [];
-  List<String> pointList = [];
   bool isLoading = false;
-  bool rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +39,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            AddActionScreen(
-                            )));
+                        builder: (context) => QuestionnaireScreen()));
               },
             ),
             iconTheme: IconThemeData(color: Colors.white),
@@ -54,7 +47,7 @@ class _ActionDetailsState extends State<ActionDetails> {
             centerTitle: true,
             elevation: 0,
             title: Text(
-              AppLocalizations.of(context).translate('act_det'),
+              AppLocalizations.of(context).translate('quest_det'),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -101,7 +94,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                               validator: (value) {
                                 if (value.length < 3) {
                                   return AppLocalizations.of(context)
-                                      .translate('name_validate');
+                                      .translate('name_quest');
                                 } else {
                                   return null;
                                 }
@@ -128,7 +121,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                                       borderSide:
                                           BorderSide(color: backgroundColor)),
                                   hintText: AppLocalizations.of(context)
-                                      .translate('name'))),
+                                      .translate('name_quest'))),
                         ),
                         Container(
                             width: MediaQuery.of(context).size.width * .2,
@@ -153,11 +146,11 @@ class _ActionDetailsState extends State<ActionDetails> {
                                           });
                                           _showToast(
                                               AppLocalizations.of(context)
-                                                  .translate('name_add'));
+                                                  .translate('quest_added'));
                                         } else {
                                           _showToast(
                                               AppLocalizations.of(context)
-                                                  .translate('name'));
+                                                  .translate('name_quest'));
                                         }
                                       }
                                     : null))
@@ -177,12 +170,11 @@ class _ActionDetailsState extends State<ActionDetails> {
                               validator: (value) {
                                 if (value.length < 3) {
                                   return AppLocalizations.of(context)
-                                      .translate('element_validate');
+                                      .translate('quest_validate');
                                 } else {
                                   return null;
                                 }
                               },
-                              enabled: isEnableElement,
                               controller: this._textEditingControllerElement,
                               style: TextStyle(
                                   color: Color(0xFF0F2E48), fontSize: 14),
@@ -203,7 +195,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                                     borderSide:
                                         BorderSide(color: backgroundColor)),
                                 hintText: AppLocalizations.of(context)
-                                    .translate('element'),
+                                    .translate('element_quest'),
                               )),
                         ),
                         Container(
@@ -215,133 +207,43 @@ class _ActionDetailsState extends State<ActionDetails> {
                                       .translate('save'),
                                   style: TextStyle(color: remWhite),
                                 ),
-                                onPressed: isEnableSaveElement
-                                    ? () {
-                                        if (_textEditingControllerElement
-                                            .text.isNotEmpty) {
-                                          FocusScope.of(context)
-                                              .requestFocus(focus);
-                                          setState(() {
-                                            elementList.add(
-                                                _textEditingControllerElement
-                                                    .text);
-                                            _showToast(
-                                                AppLocalizations.of(context)
-                                                    .translate('element_add'));
-                                            _textEditingControllerPoint.clear();
-                                            isEnablePoint = true;
-                                            isEnableSavePoint = true;
-                                            isEnableSaveElement = false;
-                                            isEnableElement = false;
-                                          });
-                                        } else {
-                                          if (elementList.isEmpty) {
-                                            _showToast(
-                                                AppLocalizations.of(context)
-                                                    .translate('element'));
-                                          }
-                                        }
-                                      }
-                                    : null))
+                                onPressed: () {
+                                  if (_textEditingControllerElement
+                                      .text.isNotEmpty) {
+                                    FocusScope.of(context).requestFocus(focus);
+                                    setState(() {
+                                      elementList.add(
+                                          _textEditingControllerElement.text);
+                                      _showToast(AppLocalizations.of(context)
+                                          .translate('element_add_quest'));
+                                      _textEditingControllerElement.clear();
+                                    });
+                                  } else {
+                                    if (elementList.isEmpty) {
+                                      _showToast(AppLocalizations.of(context)
+                                          .translate('element_quest'));
+                                    }
+                                  }
+                                }))
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * .6,
-                          child: TextFormField(
-                              enabled: isEnablePoint,
-                              controller: this._textEditingControllerPoint,
-                              keyboardType: TextInputType.number,
-                              style: TextStyle(
-                                  color: Color(0xFF0F2E48), fontSize: 14),
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(25),
-                                      borderSide:
-                                          BorderSide(color: Color(0xFFAAB5C3))),
-                                  fillColor: Color(0xFFF3F3F5),
-                                  focusColor: Color(0xFFF3F3F5),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(25),
-                                      borderSide:
-                                          BorderSide(color: Color(0xFFAAB5C3))),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(25),
-                                      borderSide:
-                                          BorderSide(color: backgroundColor)),
-                                  hintText: AppLocalizations.of(context)
-                                      .translate('point'))),
-                        ),
-                        Container(
-                            width: MediaQuery.of(context).size.width * .2,
-                            child: RaisedButton(
-                                color: themeColor,
-                                child: Text(
-                                  AppLocalizations.of(context)
-                                      .translate('save'),
-                                  style: TextStyle(color: remWhite),
-                                ),
-                                onPressed: isEnableSavePoint
-                                    ? () {
-                                        if (_textEditingControllerPoint
-                                            .text.isNotEmpty) {
-                                          FocusScope.of(context)
-                                              .requestFocus(focus);
-                                          setState(() {
-                                            if (!pointList.contains(
-                                                _textEditingControllerPoint.text
-                                                    .toString())) {
-                                              pointList.add(
-                                                  _textEditingControllerPoint
-                                                      .text
-                                                      .toString());
-                                            } else {
-                                              pointList.add(
-                                                  _textEditingControllerPoint
-                                                          .text
-                                                          .toString() +
-                                                      ' ');
-                                            }
-                                            isEnablePoint = false;
-                                            isEnableSavePoint = false;
-                                            _textEditingControllerElement
-                                                .clear();
-                                            isEnableElement = true;
-                                            isEnableSaveElement = true;
-                                          });
-                                          _showToast(
-                                              AppLocalizations.of(context)
-                                                  .translate('point_add'));
-                                        } else {
-                                          _showToast(
-                                              AppLocalizations.of(context)
-                                                  .translate('point'));
-                                        }
-                                      }
-                                    : null))
-                      ],
-                    ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
+                        child: Container(
+                            width: MediaQuery.of(context).size.width * .7,
+                            child: Row(
+                              children: [
+                                Checkbox(
+                                    value: isMulti, onChanged: _onMultiChanged),
+                                Text(AppLocalizations.of(context)
+                                    .translate('multi')),
+                              ],
+                            ))),
                   ),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 20),
-                      child: Container(
-                          width: MediaQuery.of(context).size.width * .7,
-                          child: Row(
-                            children: [
-                              Text(
-                                  AppLocalizations.of(context).translate('rm')),
-                              Checkbox(
-                                  value: rememberMe,
-                                  onChanged: _onRememberMeChanged),
-                            ],
-                          ))),
                   Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 34, horizontal: 20),
@@ -355,30 +257,28 @@ class _ActionDetailsState extends State<ActionDetails> {
                                     )
                                   : Text(
                                       AppLocalizations.of(context)
-                                          .translate('submit'),
+                                          .translate('submit_quest'),
                                       style: TextStyle(color: remWhite),
                                     ),
                               onPressed: () {
                                 if (elementList.isNotEmpty) {
-                                  if (_textEditingControllerName
-                                      .text.isNotEmpty) {
+                                  if (name != null) {
                                     setState(() {
                                       isLoading = true;
                                     });
                                     FocusScope.of(context).requestFocus(focus);
                                     print(
                                         'name$name + list${elementList.length}');
-                                    addActions();
+                                    addQuestionnaire();
                                     elementList.clear();
-                                    pointList.clear();
                                     name = '';
                                   } else {
                                     _showToast(AppLocalizations.of(context)
-                                        .translate('name'));
+                                        .translate('name_quest'));
                                   }
                                 } else {
                                   _showToast(AppLocalizations.of(context)
-                                      .translate('element'));
+                                      .translate('element_quest'));
                                 }
                               })))
                 ],
@@ -399,34 +299,32 @@ class _ActionDetailsState extends State<ActionDetails> {
             ))));
   }
 
-  void addActions() {
-    FirebaseFirestore.instance.collection("actions").doc(name.toString()).set({
-      "action": name,
+  void addQuestionnaire() {
+    DateTime now = DateTime.now();
+    var formatter = new DateFormat('yyyy-MM-dd hh:mm:ss');
+    String date = formatter.format(now);
+    FirebaseFirestore.instance.collection("questionnaires").doc(date).set({
+      "question": name,
       "element": FieldValue.arrayUnion(elementList),
-      "point": FieldValue.arrayUnion(pointList),
-      "remember": rememberMe,
+      "multi": isMulti,
     }).then((_) {
       setState(() {
         isLoading = false;
       });
-      _showToast(AppLocalizations.of(context).translate('action_add'));
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => AddActionScreen()));
+      _showToast(AppLocalizations.of(context).translate('quest_add'));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => QuestionnaireScreen()));
       print("success!");
     });
   }
 
-  void _onRememberMeChanged(bool newValue) => setState(() {
-        rememberMe = newValue;
+  void _onMultiChanged(bool newValue) => setState(() {
+        isMulti = newValue;
       });
 
   Future<bool> _onWillPop() {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                AddActionScreen(
-                )));
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => QuestionnaireScreen()));
     return Future(() => false);
   }
 }

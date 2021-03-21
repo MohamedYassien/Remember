@@ -10,8 +10,10 @@ import 'package:remember/model/points.dart';
 import 'package:remember/ui/action_screen.dart';
 import 'package:remember/ui/admin_screen.dart';
 import 'package:remember/ui/my_action.dart';
+import 'package:remember/ui/my_questionnair.dart';
 import 'package:remember/ui/my_suggestion.dart';
 import 'package:remember/ui/points_details.dart';
+import 'package:remember/ui/user_questionair_screen.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
@@ -98,8 +100,10 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: Text(AppLocalizations.of(context).translate('quit')),
                 onTap: () {
-                  // Update the state of the app.
-                  // ...
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UserQuestionnaireScreen()));
                 },
               ),
               Divider(

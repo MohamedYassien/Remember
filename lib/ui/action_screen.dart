@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:remember/model/actions.dart';
 import 'package:remember/ui/action_details.dart';
-import 'package:remember/ui/home_page.dart';
+import 'package:remember/ui/admin_screen.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
@@ -30,12 +30,18 @@ class _AddActionScreenState extends State<AddActionScreen> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
+        backgroundColor: backgroundColor2,
         key: scaffoldKey,
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          AdminPanel(
+                          )));
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
@@ -62,15 +68,15 @@ class _AddActionScreenState extends State<AddActionScreen> {
           child: !isLoading
               ? Center(child: CircularProgressIndicator())
               : hasData
-                  ? Column(
-                      children: [
-                        actionList(context, actionsList),
-                      ],
-                    )
-                  : Center(
-                      child: Text(
-                          AppLocalizations.of(context).translate('no_act')),
-                    ),
+              ? Column(
+            children: [
+              actionList(context, actionsList),
+            ],
+          )
+              : Center(
+            child: Text(
+                AppLocalizations.of(context).translate('no_act')),
+          ),
         ),
       ),
     );
@@ -137,7 +143,12 @@ class _AddActionScreenState extends State<AddActionScreen> {
   }
 
   Future<bool> _onWillPop() {
-    Navigator.of(context).pop();
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                AdminPanel(
+                )));
     return Future(() => false);
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:remember/ui/action_screen.dart';
+import 'package:remember/ui/home_page.dart';
+import 'package:remember/ui/questionair_screen.dart';
 import 'package:remember/ui/suggestions_screen.dart';
 
 import '../AppLocalizations.dart';
@@ -11,7 +13,7 @@ class AdminPanel extends StatefulWidget {
 }
 
 class _AdminPanelState extends State<AdminPanel> {
-  List<String> panelList = ['الاقتراحات', 'المبادرات'];
+  List<String> panelList = ['الاستفتاءات', 'الاقتراحات', 'المبادرات'];
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,12 @@ class _AdminPanelState extends State<AdminPanel> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          HomePage(
+                          )));
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
@@ -49,15 +56,19 @@ class _AdminPanelState extends State<AdminPanel> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SuggestionsScreen()));
+                              builder: (context) => QuestionnaireScreen()));
                       break;
                     case 1:
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AddActionScreen()));
+                              builder: (context) => SuggestionsScreen()));
                       break;
                     case 2:
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddActionScreen()));
                       break;
                     default:
                       {}
@@ -80,7 +91,12 @@ class _AdminPanelState extends State<AdminPanel> {
   }
 
   Future<bool> _onWillPop() {
-    Navigator.of(context).pop();
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                HomePage(
+                )));
     return Future(() => false);
   }
 }

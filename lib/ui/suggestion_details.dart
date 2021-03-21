@@ -19,96 +19,115 @@ class _SuggestionDetailsState extends State<SuggestionDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: backgroundColor,
-          centerTitle: true,
-          elevation: 0,
-          title: Text(
-            AppLocalizations.of(context).translate('sug_det'),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
-          )),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Form(
-                key: _detailsFormKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      margin: EdgeInsets.fromLTRB(10, 20, 10, 40),
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * .2,
-                      child: TextFormField(
-                          validator: (value) {
-                            if (value.length < 3) {
-                              return AppLocalizations.of(context)
-                                  .translate('sugg_validate');
-                            } else {
-                              return null;
-                            }
-                          },
-                          controller: this._textEditingControllerName,
-                          keyboardType: TextInputType.text,
-                          style:
-                              TextStyle(color: Color(0xFF0F2E48), fontSize: 14),
-                          autofocus: false,
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide:
-                                      BorderSide(color: Color(0xFFAAB5C3))),
-                              fillColor: Color(0xFFF3F3F5),
-                              focusColor: Color(0xFFF3F3F5),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide:
-                                      BorderSide(color: Color(0xFFAAB5C3))),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide:
-                                      BorderSide(color: backgroundColor)),
-                              hintText: AppLocalizations.of(context)
-                                  .translate('name_sugg'))),
-                    ),
-                    Container(
-                        width: MediaQuery.of(context).size.width * .5,
-                        child: RaisedButton(
-                            color: themeColor,
-                            child: Text(
-                              AppLocalizations.of(context).translate('save'),
-                              style: TextStyle(color: remWhite),
-                            ),
-                            onPressed: () {
-                              if (_detailsFormKey.currentState.validate()) {
-                                FocusScope.of(context).requestFocus();
-                                setState(() {
-                                  isLoading = true;
-                                });
-                                addSuggestion();
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        key: scaffoldKey,
+        appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            SuggestionsScreen(
+                            )));
+              },
+            ),
+            iconTheme: IconThemeData(color: Colors.white),
+            backgroundColor: backgroundColor,
+            centerTitle: true,
+            elevation: 0,
+            title: Text(
+              AppLocalizations.of(context).translate('sug_det'),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
+            )),
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Form(
+                  key: _detailsFormKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.fromLTRB(10, 20, 10, 40),
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width,
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height * .2,
+                        child: TextFormField(
+                            validator: (value) {
+                              if (value.length < 3) {
+                                return AppLocalizations.of(context)
+                                    .translate('sugg_validate');
+                              } else {
+                                return null;
                               }
-                            }))
-                  ],
-                ))
-          ],
+                            },
+                            controller: this._textEditingControllerName,
+                            keyboardType: TextInputType.text,
+                            style:
+                            TextStyle(color: Color(0xFF0F2E48), fontSize: 14),
+                            autofocus: false,
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                    borderSide:
+                                    BorderSide(color: Color(0xFFAAB5C3))),
+                                fillColor: Color(0xFFF3F3F5),
+                                focusColor: Color(0xFFF3F3F5),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                    borderSide:
+                                    BorderSide(color: Color(0xFFAAB5C3))),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                    borderSide:
+                                    BorderSide(color: backgroundColor)),
+                                hintText: AppLocalizations.of(context)
+                                    .translate('name_sugg'))),
+                      ),
+                      Container(
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .5,
+                          child: RaisedButton(
+                              color: themeColor,
+                              child: Text(
+                                AppLocalizations.of(context).translate('save'),
+                                style: TextStyle(color: remWhite),
+                              ),
+                              onPressed: () {
+                                if (_detailsFormKey.currentState.validate()) {
+                                  FocusScope.of(context).requestFocus();
+                                  setState(() {
+                                    isLoading = true;
+                                  });
+                                  addSuggestion();
+                                }
+                              }))
+                    ],
+                  ))
+            ],
+          ),
         ),
       ),
     );
@@ -143,5 +162,15 @@ class _SuggestionDetailsState extends State<SuggestionDetails> {
         isLoading = false;
       });
     });
+  }
+
+  Future<bool> _onWillPop() {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                SuggestionsScreen(
+                )));
+    return Future(() => false);
   }
 }
