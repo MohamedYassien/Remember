@@ -45,7 +45,7 @@ class _AddActionScreenState extends State<AddActionScreen> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: backgroundColor,
+          backgroundColor: themeColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

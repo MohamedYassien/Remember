@@ -56,7 +56,7 @@ class _MyQuestionnairState extends State<MyQuestionnair> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: backgroundColor,
+          backgroundColor: themeColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

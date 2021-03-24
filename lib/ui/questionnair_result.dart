@@ -48,7 +48,7 @@ class _QuestionnaireResultScreenState extends State<QuestionnaireResultScreen> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: backgroundColor,
+          backgroundColor: themeColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

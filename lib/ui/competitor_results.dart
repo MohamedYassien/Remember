@@ -49,7 +49,7 @@ class _CompetitorResultsState extends State<CompetitorResults> {
           },
         ),
         iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: backgroundColor,
+        backgroundColor: themeColor,
         centerTitle: true,
         elevation: 0,
         title: Text(

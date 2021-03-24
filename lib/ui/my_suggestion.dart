@@ -40,7 +40,7 @@ class _MySuggestionState extends State<MySuggestion> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: backgroundColor,
+          backgroundColor: themeColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

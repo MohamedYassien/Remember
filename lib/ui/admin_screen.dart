@@ -34,7 +34,7 @@ class _AdminPanelState extends State<AdminPanel> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: backgroundColor,
+          backgroundColor: themeColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

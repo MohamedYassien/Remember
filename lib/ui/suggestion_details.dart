@@ -36,7 +36,7 @@ class _SuggestionDetailsState extends State<SuggestionDetails> {
               },
             ),
             iconTheme: IconThemeData(color: Colors.white),
-            backgroundColor: backgroundColor,
+            backgroundColor: themeColor,
             centerTitle: true,
             elevation: 0,
             title: Text(

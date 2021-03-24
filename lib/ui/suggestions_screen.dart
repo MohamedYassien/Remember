@@ -45,7 +45,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: backgroundColor,
+          backgroundColor: themeColor,
           centerTitle: true,
           elevation: 0,
           title: Text(
