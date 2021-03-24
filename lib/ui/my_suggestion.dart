@@ -47,7 +47,7 @@ class _MySuggestionState extends State<MySuggestion> {
             AppLocalizations.of(context).translate('sug'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           )),
       body: SafeArea(
@@ -97,6 +97,7 @@ class _MySuggestionState extends State<MySuggestion> {
                                           this._textEditingControllerName,
                                       keyboardType: TextInputType.text,
                                       style: TextStyle(
+                                          fontFamily: 'Tajawal-Regular',
                                           color: Color(0xFF0F2E48),
                                           fontSize: 14),
                                       autofocus: false,
@@ -132,7 +133,9 @@ class _MySuggestionState extends State<MySuggestion> {
                                                 AppLocalizations.of(context)
                                                     .translate('save'),
                                                 style:
-                                                    TextStyle(color: remWhite),
+                                                TextStyle(
+                                                    fontFamily: 'Tajawal-Regular',
+                                                    color: remWhite),
                                               ),
                                         onPressed: () {
                                           if (_detailsFormKey.currentState
@@ -219,7 +222,7 @@ class _MySuggestionState extends State<MySuggestion> {
   void _showToast(String message) {
     scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text(message,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
               fontSize: chat_text_font_size,
               fontWeight: FontWeight.normal,
             ))));

@@ -58,6 +58,7 @@ class _ActionDetailsState extends State<ActionDetails> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
+                  fontFamily: 'Tajawal-Regular',
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
@@ -110,6 +111,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                               controller: this._textEditingControllerName,
                               keyboardType: TextInputType.text,
                               style: TextStyle(
+                                  fontFamily: 'Tajawal-Regular',
                                   color: Color(0xFF0F2E48), fontSize: 14),
                               autofocus: false,
                               decoration: InputDecoration(
@@ -137,7 +139,9 @@ class _ActionDetailsState extends State<ActionDetails> {
                                 child: Text(
                                   AppLocalizations.of(context)
                                       .translate('save'),
-                                  style: TextStyle(color: remWhite),
+                                  style: TextStyle(
+                                      fontFamily: 'Tajawal-Regular',
+                                      color: remWhite),
                                 ),
                                 onPressed: isEnableSaveName
                                     ? () {
@@ -185,6 +189,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                               enabled: isEnableElement,
                               controller: this._textEditingControllerElement,
                               style: TextStyle(
+                                  fontFamily: 'Tajawal-Regular',
                                   color: Color(0xFF0F2E48), fontSize: 14),
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
@@ -213,7 +218,9 @@ class _ActionDetailsState extends State<ActionDetails> {
                                 child: Text(
                                   AppLocalizations.of(context)
                                       .translate('save'),
-                                  style: TextStyle(color: remWhite),
+                                  style: TextStyle(
+                                      fontFamily: 'Tajawal-Regular',
+                                      color: remWhite),
                                 ),
                                 onPressed: isEnableSaveElement
                                     ? () {
@@ -258,6 +265,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                               controller: this._textEditingControllerPoint,
                               keyboardType: TextInputType.number,
                               style: TextStyle(
+                                  fontFamily: 'Tajawal-Regular',
                                   color: Color(0xFF0F2E48), fontSize: 14),
                               autofocus: false,
                               decoration: InputDecoration(
@@ -285,7 +293,9 @@ class _ActionDetailsState extends State<ActionDetails> {
                                 child: Text(
                                   AppLocalizations.of(context)
                                       .translate('save'),
-                                  style: TextStyle(color: remWhite),
+                                  style: TextStyle(
+                                      fontFamily: 'Tajawal-Regular',
+                                      color: remWhite),
                                 ),
                                 onPressed: isEnableSavePoint
                                     ? () {
@@ -356,7 +366,9 @@ class _ActionDetailsState extends State<ActionDetails> {
                                   : Text(
                                       AppLocalizations.of(context)
                                           .translate('submit'),
-                                      style: TextStyle(color: remWhite),
+                                style: TextStyle(
+                                    fontFamily: 'Tajawal-Regular',
+                                    color: remWhite),
                                     ),
                               onPressed: () {
                                 if (elementList.isNotEmpty) {
@@ -394,6 +406,7 @@ class _ActionDetailsState extends State<ActionDetails> {
     scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text(message,
             style: TextStyle(
+              fontFamily: 'Tajawal-Regular',
               fontSize: chat_text_font_size,
               fontWeight: FontWeight.normal,
             ))));

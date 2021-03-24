@@ -45,6 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
+                fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           )),
       body: Stack(
@@ -98,7 +99,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           validator: (value) => emailValidator(value, context),
                           keyboardType: TextInputType.emailAddress,
                           style:
-                          TextStyle(color: Color(0xFF0F2E48), fontSize: 14),
+                          TextStyle(
+                              fontFamily: 'Tajawal-Regular',
+                              color: Color(0xFF0F2E48),
+                              fontSize: 14),
                           autofocus: false,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -134,7 +138,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                           keyboardType: TextInputType.text,
                           style:
-                          TextStyle(color: Color(0xFF0F2E48), fontSize: 14),
+                          TextStyle(
+                              fontFamily: 'Tajawal-Regular',
+                              color: Color(0xFF0F2E48),
+                              fontSize: 14),
                           autofocus: false,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -170,7 +177,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                           keyboardType: TextInputType.text,
                           style:
-                          TextStyle(color: Color(0xFF0F2E48), fontSize: 14),
+                          TextStyle(
+                              fontFamily: 'Tajawal-Regular',
+                              color: Color(0xFF0F2E48),
+                              fontSize: 14),
                           autofocus: false,
                           decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -199,7 +209,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           validator: (value) => pwdValidator(value, context),
                           obscureText: this.isNoVisiblePassword,
                           style:
-                          TextStyle(color: Color(0xFF0F2E48), fontSize: 14),
+                          TextStyle(
+                              fontFamily: 'Tajawal-Regular',
+                              color: Color(0xFF0F2E48),
+                              fontSize: 14),
                           decoration: InputDecoration(
                               suffixIcon: GestureDetector(
                                   onTap: () {
@@ -325,6 +338,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             AppLocalizations.of(context)
                                 .translate('sign_up'),
                             style: TextStyle(
+                                fontFamily: 'Tajawal-Regular',
                                 color: Colors.white,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold),
@@ -338,6 +352,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text(message,
             style: TextStyle(
+              fontFamily: 'Tajawal-Regular',
               fontSize: chat_text_font_size,
               fontWeight: FontWeight.normal,
             ))));

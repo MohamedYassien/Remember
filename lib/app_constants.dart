@@ -13,9 +13,9 @@ const double button_BorderRadius = 4.0;
 const double button_width_percentage = 0.75;
 const double button_height = 40;
 const Color remWhite = Color(0xFFFFFFFF);
-const Color backgroundColor = Color(0xFFd1e29e);
+const Color backgroundColor = Color(0xFFa5ce39);
 const Color backgroundColor2 = Color(0xFFa6cc3d);
-const Color themeColor = Color(0xFF268549);
+const Color themeColor = Color(0xFF208545);
 const Color themeColor2 = Color(0xFF4f976a);
 
 

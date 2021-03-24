@@ -50,7 +50,7 @@ class _QuestionnairDetailsState extends State<QuestionnairDetails> {
               AppLocalizations.of(context).translate('quest_det'),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
+              style: TextStyle(fontFamily: 'Tajawal-Regular',
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
@@ -102,7 +102,7 @@ class _QuestionnairDetailsState extends State<QuestionnairDetails> {
                               enabled: isEnableName,
                               controller: this._textEditingControllerName,
                               keyboardType: TextInputType.text,
-                              style: TextStyle(
+                              style: TextStyle(fontFamily: 'Tajawal-Regular',
                                   color: Color(0xFF0F2E48), fontSize: 14),
                               autofocus: false,
                               decoration: InputDecoration(
@@ -130,7 +130,9 @@ class _QuestionnairDetailsState extends State<QuestionnairDetails> {
                                 child: Text(
                                   AppLocalizations.of(context)
                                       .translate('save'),
-                                  style: TextStyle(color: remWhite),
+                                  style: TextStyle(
+                                      fontFamily: 'Tajawal-Regular',
+                                      color: remWhite),
                                 ),
                                 onPressed: isEnableSaveName
                                     ? () {
@@ -176,7 +178,7 @@ class _QuestionnairDetailsState extends State<QuestionnairDetails> {
                                 }
                               },
                               controller: this._textEditingControllerElement,
-                              style: TextStyle(
+                              style: TextStyle(fontFamily: 'Tajawal-Regular',
                                   color: Color(0xFF0F2E48), fontSize: 14),
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
@@ -205,7 +207,9 @@ class _QuestionnairDetailsState extends State<QuestionnairDetails> {
                                 child: Text(
                                   AppLocalizations.of(context)
                                       .translate('save'),
-                                  style: TextStyle(color: remWhite),
+                                  style: TextStyle(
+                                      fontFamily: 'Tajawal-Regular',
+                                      color: remWhite),
                                 ),
                                 onPressed: () {
                                   if (_textEditingControllerElement
@@ -258,7 +262,8 @@ class _QuestionnairDetailsState extends State<QuestionnairDetails> {
                                   : Text(
                                       AppLocalizations.of(context)
                                           .translate('submit_quest'),
-                                      style: TextStyle(color: remWhite),
+                                style: TextStyle(fontFamily: 'Tajawal-Regular',
+                                    color: remWhite),
                                     ),
                               onPressed: () {
                                 if (elementList.isNotEmpty) {
@@ -293,7 +298,7 @@ class _QuestionnairDetailsState extends State<QuestionnairDetails> {
   void _showToast(String message) {
     scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text(message,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
               fontSize: chat_text_font_size,
               fontWeight: FontWeight.normal,
             ))));

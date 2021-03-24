@@ -52,7 +52,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
             AppLocalizations.of(context).translate('add_sug'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           ),
           actions: [
@@ -164,7 +164,9 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(5),
               child: Text(suggestionList[index].question,
-                  style: TextStyle(color: Colors.black, fontSize: 16)),
+                  style: TextStyle(fontFamily: 'Tajawal-Regular',
+                      color: Colors.black,
+                      fontSize: 16)),
             ),
           ),
         ),

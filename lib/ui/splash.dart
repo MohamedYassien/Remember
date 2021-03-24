@@ -2,6 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:remember/ui/login.dart';
+
+import '../AppLanguage.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -17,6 +21,8 @@ class SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var appLanguage = Provider.of<AppLanguage>(context);
+    appLanguage.changeLanguage(Locale("ar"));
     return Stack(children: <Widget>[
       Image.asset(
         'assets/ic_splash.png',
@@ -37,7 +43,13 @@ class SplashScreenState extends State<SplashScreen> {
   countDownTime() async {
     return Timer(Duration(seconds: splashDuration), () {
       SystemChannels.textInput.invokeMethod('TextInput.hide');
-      Navigator.of(context).pushNamed('/Home');
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => LoginScreen(),
+        ),
+            (route) => false,
+      );
     });
   }
 
@@ -70,7 +82,8 @@ class SplashScreenState extends State<SplashScreen> {
                   string,
                   maxLines: 4,
 //                    '${AppLocalizations.of(context).translate('node')} :${obj.node}',
-                    style: TextStyle(color: Colors.black,
+                    style: TextStyle(
+                        color: Colors.black, fontFamily: 'Tajawal-Regular',
                         fontSize: 16,decoration: TextDecoration.none)),
               ],
             ),

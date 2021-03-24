@@ -2,10 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:remember/model/actions.dart';
 import 'package:remember/model/questionnaire.dart';
 import 'package:remember/ui/home_page.dart';
-import 'package:remember/ui/result.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
@@ -65,7 +63,7 @@ class _MyQuestionnairState extends State<MyQuestionnair> {
             AppLocalizations.of(context).translate('quest'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           )),
       body: SafeArea(
@@ -82,7 +80,7 @@ class _MyQuestionnairState extends State<MyQuestionnair> {
                         child: Text(
                           AppLocalizations.of(context)
                               .translate('already_ques'),
-                          style: TextStyle(
+                          style: TextStyle(fontFamily: 'Tajawal-Regular',
                               color: remWhite,
                               fontSize: 25,
                               fontWeight: FontWeight.bold),
@@ -120,7 +118,9 @@ class _MyQuestionnairState extends State<MyQuestionnair> {
                                     padding: EdgeInsets.all(5),
                                     child: Text(
                                       'الاستفتاء : ' + question,
-                                      style: TextStyle(fontSize: 15),
+                                      style: TextStyle(
+                                          fontFamily: 'Tajawal-Regular',
+                                          fontSize: 15),
                                     ),
                                   ),
                                 )),
@@ -138,7 +138,9 @@ class _MyQuestionnairState extends State<MyQuestionnair> {
                                         : Text(
                                             AppLocalizations.of(context)
                                                 .translate('submit_qu'),
-                                            style: TextStyle(color: remWhite),
+                                      style: TextStyle(
+                                          fontFamily: 'Tajawal-Regular',
+                                          color: remWhite),
                                           ),
                                     onPressed: () {
                                       setState(() {
@@ -198,7 +200,7 @@ class _MyQuestionnairState extends State<MyQuestionnair> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(_list.elementAt(index),
-                                style: TextStyle(
+                                style: TextStyle(fontFamily: 'Tajawal-Regular',
                                     color: Colors.black, fontSize: 16)),
                             isMulti
                                 ? Checkbox(
@@ -285,7 +287,7 @@ class _MyQuestionnairState extends State<MyQuestionnair> {
   void _showToast(String message) {
     scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text(message,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
               fontSize: chat_text_font_size,
               fontWeight: FontWeight.normal,
             ))));

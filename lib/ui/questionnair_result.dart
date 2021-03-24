@@ -1,13 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:remember/model/questionnaire.dart';
-import 'package:remember/model/questions.dart';
 import 'package:remember/model/user_questionnaire.dart';
-import 'package:remember/ui/admin_screen.dart';
-import 'package:remember/ui/questionnair_details.dart';
-import 'package:remember/ui/suggestion_details.dart';
-import 'package:remember/ui/user_suggestion.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
@@ -61,7 +55,7 @@ class _QuestionnaireResultScreenState extends State<QuestionnaireResultScreen> {
             AppLocalizations.of(context).translate('res_quest'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           ),
         ),
@@ -98,7 +92,9 @@ class _QuestionnaireResultScreenState extends State<QuestionnaireResultScreen> {
                                 padding: EdgeInsets.all(5),
                                 child: Text(
                                   'الاستفتاء : ' + widget.questionnaire,
-                                  style: TextStyle(fontSize: 15),
+                                  style: TextStyle(
+                                      fontFamily: 'Tajawal-Regular',
+                                      fontSize: 15),
                                 ),
                               ),
                             )),
@@ -172,13 +168,17 @@ class _QuestionnaireResultScreenState extends State<QuestionnaireResultScreen> {
                       children: [
                         Text(widget.elementList[index] + ' : ',
                             style:
-                                TextStyle(color: Colors.black, fontSize: 16)),
+                            TextStyle(fontFamily: 'Tajawal-Regular',
+                                color: Colors.black,
+                                fontSize: 16)),
                         Text(
                             map[widget.elementList[index]] != null
                                 ? (map[widget.elementList[index]]).toString()
                                 : '0',
                             style:
-                                TextStyle(color: Colors.black, fontSize: 16)),
+                            TextStyle(fontFamily: 'Tajawal-Regular',
+                                color: Colors.black,
+                                fontSize: 16)),
                       ],
                     ),
                   ),

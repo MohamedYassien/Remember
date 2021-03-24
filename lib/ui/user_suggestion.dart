@@ -48,7 +48,7 @@ class _UserSuggestionsState extends State<UserSuggestions> {
             AppLocalizations.of(context).translate('sug_det'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           )),
       body: SafeArea(
@@ -62,7 +62,8 @@ class _UserSuggestionsState extends State<UserSuggestions> {
                   )
                 : Center(
                     child:
-                        Text(AppLocalizations.of(context).translate('no_sugg')),
+                    Text(AppLocalizations.of(context).translate('no_sugg'),
+                      style: TextStyle(fontFamily: 'Tajawal-Regular',),),
                   ),
       ),
     );

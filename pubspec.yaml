@@ -38,7 +38,7 @@ dependencies:
   flutter_secure_storage: ^3.3.1+1
   intl: ^0.16.1
   polls: ^0.2.2
-
+  auto_size_text: ^2.1.0
 
 
 dev_dependencies:
@@ -54,6 +54,28 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
+  fonts:
+    - family: Tajawal-Black
+      fonts:
+        - asset: fonts/Tajawal-Black.ttf
+    - family: Tajawal-Bold
+      fonts:
+        - asset: fonts/Tajawal-Bold.ttf
+    - family: Tajawal-ExtraBold
+      fonts:
+        - asset: fonts/Tajawal-ExtraBold.ttf
+    - family: Tajawal-ExtraLight
+      fonts:
+        - asset: fonts/Tajawal-ExtraLight.ttf
+    - family: Tajawal-Light
+      fonts:
+        - asset: fonts/Tajawal-Light.ttf
+    - family: Tajawal-Medium
+      fonts:
+        - asset: fonts/Tajawal-Medium.ttf
+    - family: Tajawal-Regular
+      fonts:
+        - asset: fonts/Tajawal-Regular.ttf
   uses-material-design: true
   assets:
     - assets/ic_splash.png

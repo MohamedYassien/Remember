@@ -53,6 +53,7 @@ class _AddActionScreenState extends State<AddActionScreen> {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
+                fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           ),
           actions: [
@@ -75,7 +76,9 @@ class _AddActionScreenState extends State<AddActionScreen> {
           )
               : Center(
             child: Text(
-                AppLocalizations.of(context).translate('no_act')),
+              AppLocalizations.of(context).translate('no_act'),
+              style: TextStyle(fontFamily: 'Tajawal-Regular',
+              ),),
           ),
         ),
       ),

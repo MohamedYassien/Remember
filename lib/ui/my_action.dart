@@ -62,7 +62,7 @@ class _MyActionState extends State<MyAction> {
             widget.actionList.action,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           )),
       body: SafeArea(
@@ -78,7 +78,7 @@ class _MyActionState extends State<MyAction> {
                         padding: EdgeInsets.all(15.0),
                         child: Text(
                           AppLocalizations.of(context).translate('already'),
-                          style: TextStyle(
+                          style: TextStyle(fontFamily: 'Tajawal-Regular',
                               color: remWhite,
                               fontSize: 25,
                               fontWeight: FontWeight.bold),
@@ -102,7 +102,9 @@ class _MyActionState extends State<MyAction> {
                                         : Text(
                                             AppLocalizations.of(context)
                                                 .translate('save'),
-                                            style: TextStyle(color: remWhite),
+                                      style: TextStyle(
+                                          fontFamily: 'Tajawal-Regular',
+                                          color: remWhite),
                                           ),
                                     onPressed: () {
                                       setState(() {
@@ -121,7 +123,9 @@ class _MyActionState extends State<MyAction> {
                                         : Text(
                                             AppLocalizations.of(context)
                                                 .translate('submit_points'),
-                                            style: TextStyle(color: remWhite),
+                                      style: TextStyle(
+                                          fontFamily: 'Tajawal-Regular',
+                                          color: remWhite),
                                           ),
                                     onPressed: () {
                                       setState(() {
@@ -180,7 +184,7 @@ class _MyActionState extends State<MyAction> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(_list.elementAt(index),
-                                style: TextStyle(
+                                style: TextStyle(fontFamily: 'Tajawal-Regular',
                                     color: Colors.black, fontSize: 16)),
                             Checkbox(
                                 value: values[index],
@@ -278,7 +282,7 @@ class _MyActionState extends State<MyAction> {
   void _showToast(String message) {
     scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text(message,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
               fontSize: chat_text_font_size,
               fontWeight: FontWeight.normal,
             ))));

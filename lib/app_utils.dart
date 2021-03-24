@@ -104,7 +104,9 @@ Widget customCard(var obj, BuildContext context, {onTapYes}) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(obj.action,
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
               ],
             ),
           ),
@@ -142,7 +144,9 @@ Widget customCardQuestion(var obj, BuildContext context, {onTapYes}) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(obj.question,
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
               ],
             ),
           ),
@@ -181,13 +185,19 @@ Widget customCardSuggestion(var obj, BuildContext context, {onTapYes}) {
               children: [
                 Text('${AppLocalizations.of(context).translate(
                     'username')} :${obj.username}',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
                 Text('${AppLocalizations.of(context).translate('sugg')} :${obj
                     .answer}',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
                 Text('${AppLocalizations.of(context).translate('date')} :${obj
                     .date}',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
               ],
             ),
           ),
@@ -226,14 +236,20 @@ Widget customCardQuestionnair(var obj, BuildContext context, {onTapYes}) {
               children: [
                 Text('${AppLocalizations.of(context).translate(
                     'username')} :${obj.userName}',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
                 Text('${AppLocalizations.of(context).translate(
                     'res_quest')} :${obj
                     .choiceElement}',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
                 Text('${AppLocalizations.of(context).translate('date')} :${obj
                     .date}',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
               ],
             ),
           ),
@@ -273,7 +289,9 @@ Widget customCardSumResult(var obj, BuildContext context, {onTapYes}) {
                 Text(
                     '${AppLocalizations.of(context).translate('result_sum')}'
                         '$obj',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
               ],
             ),
           ),
@@ -313,19 +331,27 @@ Widget customCardPoint(var obj, BuildContext context, {onTapYes}) {
                 Text(
                     '${AppLocalizations.of(context).translate(
                         'username')} :${obj.username}',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
                 Text(
                     '${AppLocalizations.of(context).translate(
                         'competiation')} :${obj.competiation}',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
                 Text(
                     '${AppLocalizations.of(context).translate('date')} :${obj
                         .date}',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
                 Text(
                     '${AppLocalizations.of(context).translate('result')} :${obj
                         .sum}',
-                    style: TextStyle(color: Colors.black, fontSize: 16)),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
               ],
             ),
           ),
@@ -361,7 +387,9 @@ Widget customCardMyResult(var obj, BuildContext context, {onTapYes}) {
             padding: const EdgeInsets.all(5.0),
             child: Column(
               children: [
-                Text(obj, style: TextStyle(color: Colors.black, fontSize: 16)),
+                Text(obj, style: TextStyle(fontFamily: 'Tajawal-Regular',
+                    color: Colors.black,
+                    fontSize: 16)),
               ],
             ),
           ),

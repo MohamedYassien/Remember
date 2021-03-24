@@ -7,10 +7,8 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:remember/model/actions.dart';
 import 'package:remember/model/points.dart';
-import 'package:remember/ui/action_screen.dart';
 import 'package:remember/ui/admin_screen.dart';
 import 'package:remember/ui/my_action.dart';
-import 'package:remember/ui/my_questionnair.dart';
 import 'package:remember/ui/my_suggestion.dart';
 import 'package:remember/ui/points_details.dart';
 import 'package:remember/ui/user_questionair_screen.dart';
@@ -61,6 +59,7 @@ class _HomePageState extends State<HomePage> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
+                  fontFamily: 'Tajawal-Regular',
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
@@ -72,13 +71,15 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               DrawerHeader(
                 child: Text(
-                    AppLocalizations.of(context).translate('side_menu')),
+                    AppLocalizations.of(context).translate('side_menu'),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
                 decoration: BoxDecoration(
                   color: backgroundColor,
                 ),
               ),
               ListTile(
-                title: Text(AppLocalizations.of(context).translate('eb')),
+                title: Text(AppLocalizations.of(context).translate('eb'),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
                 onTap: () {
                   // Update the state of the app.
                   // ...
@@ -88,7 +89,8 @@ class _HomePageState extends State<HomePage> {
                 height: 2,
               ),
               ListTile(
-                title: Text(AppLocalizations.of(context).translate('lovers')),
+                title: Text(AppLocalizations.of(context).translate('lovers'),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
                 onTap: () {
                   // Update the state of the app.
                   // ...
@@ -98,7 +100,8 @@ class _HomePageState extends State<HomePage> {
                 height: 2,
               ),
               ListTile(
-                title: Text(AppLocalizations.of(context).translate('quit')),
+                title: Text(AppLocalizations.of(context).translate('quit'),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
                 onTap: () {
                   Navigator.push(
                       context,
@@ -110,7 +113,8 @@ class _HomePageState extends State<HomePage> {
                 height: 2,
               ),
               ListTile(
-                title: Text(AppLocalizations.of(context).translate('sug')),
+                title: Text(AppLocalizations.of(context).translate('sug'),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
                 onTap: () {
                   Navigator.push(
                       context,
@@ -123,7 +127,8 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: Text(
-                    AppLocalizations.of(context).translate('result_all')),
+                    AppLocalizations.of(context).translate('result_all'),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
                 onTap: () {
                   Navigator.push(
                       context,
@@ -137,7 +142,8 @@ class _HomePageState extends State<HomePage> {
               isAdmin
                   ? ListTile(
                 title:
-                Text(AppLocalizations.of(context).translate('admin')),
+                Text(AppLocalizations.of(context).translate('admin'),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
                 onTap: () {
                   Navigator.push(
                       context,
@@ -152,7 +158,8 @@ class _HomePageState extends State<HomePage> {
               )
                   : SizedBox(),
               ListTile(
-                title: Text(AppLocalizations.of(context).translate('setting')),
+                title: Text(AppLocalizations.of(context).translate('setting'),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
                 onTap: () {
                   // Update the state of the app.
                   // ...
@@ -204,7 +211,8 @@ class _HomePageState extends State<HomePage> {
                   : !hasData
                   ? Center(
                 child: Text(
-                    AppLocalizations.of(context).translate('no_act')),
+                    AppLocalizations.of(context).translate('no_act'),
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
               )
                   : GridView.count(
                   scrollDirection: Axis.vertical,
@@ -232,7 +240,8 @@ class _HomePageState extends State<HomePage> {
                       : !hasDataPoints
                       ? Center(
                     child: Text(
-                        AppLocalizations.of(context).translate('no_result')),
+                      AppLocalizations.of(context).translate('no_result'),
+                      style: TextStyle(fontFamily: 'Tajawal-Regular',),),
                   )
                       : GridView.count(
                       scrollDirection: Axis.vertical,
@@ -256,6 +265,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   Container choiceCard(context, index, bool isActionList) {
+    print('size${(MediaQuery
+        .of(context)
+        .size
+        .width - 20) / 3}');
+    var size = (MediaQuery
+        .of(context)
+        .size
+        .width - 20) / 3;
     return Container(
         padding: EdgeInsets.all(4.0),
         child: Center(
@@ -289,26 +306,30 @@ class _HomePageState extends State<HomePage> {
                                   actionModelList[index].action ?? '',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: remWhite,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17),
+                                    fontFamily: 'Tajawal-Regular',
+                                    color: remWhite,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: size < 120.0 ? 10.0 : 16,
+                                  ),
                                 ) : Column(
                                   children: [
                                     Text(
                                       pointsList[index].competiation ?? '',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
+                                          fontFamily: 'Tajawal-Regular',
                                           color: remWhite,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 17),
+                                          fontSize: size < 120.0 ? 10.0 : 16),
                                     ),
                                     Text(
                                       pointsList[index].sum.toString() ?? '',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
+                                          fontFamily: 'Tajawal-Regular',
                                           color: remWhite,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 20),
+                                          fontSize: size < 120.0 ? 10.0 : 16),
                                     ),
                                   ],
                                 ))),
@@ -403,6 +424,7 @@ class _HomePageState extends State<HomePage> {
                 AppLocalizations.of(context)
                     .translate('exit'),
                 style: TextStyle(
+                  fontFamily: 'Tajawal-Regular',
                   color: themeColor,
                   fontWeight: FontWeight.normal,
                 ),
@@ -412,6 +434,7 @@ class _HomePageState extends State<HomePage> {
           content: Text(
               AppLocalizations.of(context).translate('exit_message'),
               style: TextStyle(
+                fontFamily: 'Tajawal-Regular',
                 fontSize: chat_text_font_size,
                 fontWeight: FontWeight.normal,
               )),
@@ -435,6 +458,7 @@ class _HomePageState extends State<HomePage> {
                     AppLocalizations.of(context)
                         .translate('no'),
                     style: TextStyle(
+                      fontFamily: 'Tajawal-Regular',
                       color: remWhite,
                       fontWeight: FontWeight.normal,
                     ),
@@ -459,6 +483,7 @@ class _HomePageState extends State<HomePage> {
                     AppLocalizations.of(context)
                         .translate('yes'),
                     style: TextStyle(
+                      fontFamily: 'Tajawal-Regular',
                       color: remWhite,
                       fontWeight: FontWeight.normal,
                     ),

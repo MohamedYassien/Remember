@@ -41,7 +41,7 @@ class _AdminPanelState extends State<AdminPanel> {
             AppLocalizations.of(context).translate('control'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           ),
         ),
@@ -79,7 +79,8 @@ class _AdminPanelState extends State<AdminPanel> {
                     child: new Center(
                       child: new Text(
                         '${panelList[index]}',
-                        style: TextStyle(fontSize: 22),
+                        style: TextStyle(fontFamily: 'Tajawal-Regular',
+                            fontSize: 22),
                       ),
                     )),
               ),

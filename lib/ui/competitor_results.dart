@@ -56,7 +56,7 @@ class _CompetitorResultsState extends State<CompetitorResults> {
           AppLocalizations.of(context).translate('result_all'),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
+          style: TextStyle(fontFamily: 'Tajawal-Regular',
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
         ),
         actions: [
@@ -109,7 +109,7 @@ class _CompetitorResultsState extends State<CompetitorResults> {
                       icon: Icon(Icons.arrow_drop_down),
                       iconSize: 24,
                       elevation: 16,
-                      style: TextStyle(
+                      style: TextStyle(fontFamily: 'Tajawal-Regular',
                           color: Colors.red, fontSize: 18),
                       onChanged: (String data) {
                         setState(() {
@@ -166,7 +166,9 @@ class _CompetitorResultsState extends State<CompetitorResults> {
                       icon: Icon(Icons.arrow_drop_down),
                       iconSize: 24,
                       elevation: 16,
-                      style: TextStyle(color: Colors.red, fontSize: 18),
+                      style: TextStyle(fontFamily: 'Tajawal-Regular',
+                          color: Colors.red,
+                          fontSize: 18),
                       onChanged: (String data) {
                         setState(() {
                           dropdownValue = data;
@@ -239,6 +241,7 @@ class _CompetitorResultsState extends State<CompetitorResults> {
                                   AppLocalizations.of(context)
                                       .translate('No_date'),
                                   style: TextStyle(
+                                      fontFamily: 'Tajawal-Regular',
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18),

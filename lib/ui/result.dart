@@ -53,7 +53,7 @@ class _MyResultState extends State<MyResult> {
               AppLocalizations.of(context).translate('result'),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
+              style: TextStyle(fontFamily: 'Tajawal-Regular',
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
@@ -123,7 +123,7 @@ class _MyResultState extends State<MyResult> {
                             child: Text(
                           sum.toString() ?? '',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                              style: TextStyle(fontFamily: 'Tajawal-Regular',
                               color: remWhite,
                               fontWeight: FontWeight.bold,
                               fontSize: 100),

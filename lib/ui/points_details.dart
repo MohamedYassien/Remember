@@ -44,7 +44,7 @@ class _PointsDetailsState extends State<PointsDetails> {
             AppLocalizations.of(context).translate('result_details'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           )),
       body: SafeArea(

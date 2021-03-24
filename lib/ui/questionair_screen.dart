@@ -48,7 +48,7 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
             AppLocalizations.of(context).translate('add_quest'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: TextStyle(fontFamily: 'Tajawal-Regular',
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
           ),
           actions: [
@@ -162,7 +162,9 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(5),
               child: Text(questionnaireList[index].question,
-                  style: TextStyle(color: Colors.black, fontSize: 16)),
+                  style: TextStyle(fontFamily: 'Tajawal-Regular',
+                      color: Colors.black,
+                      fontSize: 16)),
             ),
           ),
         ),
