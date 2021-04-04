@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:remember/app_constants.dart';
+import 'package:remember/ui/basic_home.dart';
 import 'package:remember/ui/home_page.dart';
 import 'package:remember/ui/sign_up.dart';
 
@@ -29,16 +30,18 @@ class _LoginScreenState extends State<LoginScreen> {
       key: scaffoldKey,
       appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor:  backgroundColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(
-            AppLocalizations.of(context)
-                .translate('login'),
+            AppLocalizations.of(context).translate('login'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontFamily: 'Tajawal-Regular',
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+            style: TextStyle(
+                fontFamily: 'Tajawal-Regular',
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18),
           )),
       body: Stack(
         children: <Widget>[
@@ -47,8 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Container(
               height: MediaQuery.of(context).size.height * 0.7,
               width: MediaQuery.of(context).size.width,
-              color:  backgroundColor,
-
+              color: backgroundColor,
             ),
           ),
           Align(
@@ -113,20 +115,18 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25),
-                                borderSide: BorderSide(color: Color(
-                                    0xFFAAB5C3))),
+                                borderSide:
+                                BorderSide(color: Color(0xFFAAB5C3))),
                             filled: true,
                             fillColor: Color(0xFFF3F3F5),
                             focusColor: Color(0xFFF3F3F5),
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25),
-                                borderSide: BorderSide(color: Color(
-                                    0xFFAAB5C3))),
+                                borderSide:
+                                BorderSide(color: Color(0xFFAAB5C3))),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25),
-                                borderSide: BorderSide(
-                                    color:
-                                    backgroundColor)),
+                                borderSide: BorderSide(color: backgroundColor)),
                             hintText: AppLocalizations.of(context)
                                 .translate('email'))),
                   ),
@@ -188,13 +188,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderSide: BorderSide(color: Color(0xFFAAB5C3))),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25),
-                              borderSide: BorderSide(
-                                  color:
-                                  backgroundColor)),
+                              borderSide: BorderSide(color: backgroundColor)),
                           hintText: AppLocalizations.of(context)
-                              .translate('password'),)),
+                              .translate('password'),
+                        )),
                   ),
-
                   GestureDetector(
                     onTap: () {
                       if (_loginFormKey.currentState.validate()) {
@@ -216,23 +214,23 @@ class _LoginScreenState extends State<LoginScreen> {
                               setState(() {
                                 isLoading = false;
                               }),
-                              saveUid(currentUser.user.uid,
-                                  result["fname"] + '' + result["lname"]),
+                              saveUid(
+                                  currentUser.user.uid,
+                                  result["fname"] +
+                                      '' +
+                                      result["lname"]),
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          HomePage(
-
-//                                      title: result["fname"] +
-//                                          "'s Tasks",
-//                                      uid: currentUser.uid,
-                                          )))})
+                                          BasicHomePage()))
+                            })
                                 .catchError((err) {
                               setState(() {
                                 isLoading = false;
                               });
-                              _showToast('Something wrong. Please try again.');
+                              _showToast(
+                                  'Something wrong. Please try again.');
                               print("error1${err.toString()}");
                             }))
                             .catchError((err) {
@@ -258,15 +256,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40),
                             ),
-                            color:
-                            backgroundColor,
+                            color: backgroundColor,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10),
+                              padding:
+                              const EdgeInsets.symmetric(horizontal: 10),
                               child: Center(
-                                  child: isLoading ? CircularProgressIndicator(
+                                  child: isLoading
+                                      ? CircularProgressIndicator(
                                     backgroundColor: remWhite,
-                                  ) : Text(
+                                  )
+                                      : Text(
                                     AppLocalizations.of(context)
                                         .translate('login'),
                                     style: TextStyle(
@@ -286,7 +285,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: TextSpan(children: [
                           TextSpan(
                               text: AppLocalizations.of(context)
-                                  .translate('first_time') + ' \n',
+                                  .translate('first_time') +
+                                  ' \n',
                               style: TextStyle(
                                   fontFamily: 'Tajawal-Regular',
                                   color: Color(0xFF0F2E48),
@@ -309,12 +309,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           builder: (_buildContext) => SignUpScreen()));
                     },
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 5, horizontal: 10),
+                    child: Image.asset('assets/ic_splash.png',
+                      height: MediaQuery
+                          .of(context)
+                          .size
+                          .height * .2,),
+                  ),
                 ],
               ),
             ),
           ),
         ),
-
       ],
     );
   }
@@ -327,5 +335,4 @@ class _LoginScreenState extends State<LoginScreen> {
               fontWeight: FontWeight.normal,
             ))));
   }
-
 }

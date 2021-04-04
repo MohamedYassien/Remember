@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:remember/model/questionnaire.dart';
+import 'package:remember/ui/basic_home.dart';
 import 'package:remember/ui/home_page.dart';
 import 'package:remember/ui/my_questionnair.dart';
 
@@ -37,7 +38,8 @@ class _UserQuestionnaireScreenState extends State<UserQuestionnaireScreen> {
             icon: Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+                  context,
+                  MaterialPageRoute(builder: (context) => BasicHomePage()));
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),

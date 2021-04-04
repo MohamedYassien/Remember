@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:remember/ui/home_page.dart';
+import 'package:remember/ui/basic_home.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
@@ -18,6 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController firstNameInputController;
   TextEditingController lastNameInputController;
   TextEditingController emailInputController;
+  TextEditingController phoneInputController;
   TextEditingController pwdInputController;
   bool isNoVisiblePassword = true;
   bool isLoading = false;
@@ -27,6 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     firstNameInputController = new TextEditingController();
     lastNameInputController = new TextEditingController();
     emailInputController = new TextEditingController();
+    phoneInputController = new TextEditingController();
     pwdInputController = new TextEditingController();
     super.initState();
   }
@@ -200,6 +202,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       color: backgroundColor)),
                               hintText: AppLocalizations.of(context)
                                   .translate('last_name'))),
+                    ), Padding(
+                      padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      child: TextFormField(
+                          controller: phoneInputController,
+                          validator: (value) {
+                            if (value.length < 11) {
+                              return AppLocalizations.of(context)
+                                  .translate('validate_phone');
+                            } else {
+                              return null;
+                            }
+                          },
+                          keyboardType: TextInputType.phone,
+                          style:
+                          TextStyle(
+                              fontFamily: 'Tajawal-Regular',
+                              color: Color(0xFF0F2E48),
+                              fontSize: 14),
+                          autofocus: false,
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide:
+                                  BorderSide(color: Color(0xFFAAB5C3))),
+                              filled: true,
+                              fillColor: Color(0xFFF3F3F5),
+                              focusColor: Color(0xFFF3F3F5),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide:
+                                  BorderSide(color: Color(0xFFAAB5C3))),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                      color: backgroundColor)),
+                              hintText: AppLocalizations.of(context)
+                                  .translate('phone'))),
                     ),
                     Padding(
                       padding:
@@ -282,6 +322,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       "fname": firstNameInputController.text,
                       "lname": lastNameInputController.text,
                       "email": emailInputController.text,
+                      "phone": phoneInputController.text,
                       "isAdmin": false,
                     })
                         .then((result) =>
@@ -297,7 +338,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  HomePage(
+                                  BasicHomePage(
 
                                   )),
                               (_) => false),

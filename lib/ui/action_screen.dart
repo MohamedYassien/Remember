@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:remember/model/actions.dart';
 import 'package:remember/ui/action_details.dart';
+import 'package:remember/ui/action_edit.dart';
 import 'package:remember/ui/admin_screen.dart';
 
 import '../AppLocalizations.dart';
@@ -93,22 +94,52 @@ class _AddActionScreenState extends State<AddActionScreen> {
         width: size.width,
         height: size.height,
         child: ListView.builder(
-          physics: const AlwaysScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(5.5),
           itemCount: _list.length,
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return Container(
-              padding: EdgeInsets.all(5.0),
-              child: customCard(
-                _list.elementAt(index),
-                context,
-              ),
-            );
-          },
+          itemBuilder: _itemBuilder,
         ),
       ),
     );
+  }
+
+  Widget _itemBuilder(BuildContext context, int index) {
+    return InkWell(
+        child: Container(
+          padding: EdgeInsets.all(5),
+          margin: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 0.5,
+                blurRadius: 9,
+                offset: Offset(0, 3), // changes position of shadow
+              )
+            ],
+          ),
+          child: ClipPath(
+            clipper: ShapeBorderClipper(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15))),
+            child: Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.all(5),
+              child: Text(actionsList[index].action,
+                  style: TextStyle(fontFamily: 'Tajawal-Regular',
+                      color: Colors.black,
+                      fontSize: 16)),
+            ),
+          ),
+        ),
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) =>
+                  ActionEdit(
+                    actionsModel: actionsList[index],
+                  )));
+        });
   }
 
   void getAction() {
@@ -125,9 +156,16 @@ class _AddActionScreenState extends State<AddActionScreen> {
             elementList.add(i);
 //                  print('profile$elementList');
           });
+          List<String> pointList = [];
+          pointList.clear();
+          result.data()["point"].forEach((i) {
+            pointList.add(i);
+//                  print('profile$elementList');
+          });
           setState(() {
             actionsList.add(ActionsModel(
-                action: result.data()["action"], element: elementList));
+                action: result.data()["action"], element: elementList,
+                point: pointList));
           });
         });
         setState(() {

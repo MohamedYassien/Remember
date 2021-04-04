@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:remember/ui/action_screen.dart';
+import 'package:remember/ui/basic_home.dart';
 import 'package:remember/ui/home_page.dart';
 import 'package:remember/ui/questionair_screen.dart';
 import 'package:remember/ui/suggestions_screen.dart';
@@ -29,7 +30,7 @@ class _AdminPanelState extends State<AdminPanel> {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          HomePage(
+                          BasicHomePage(
                           )));
             },
           ),

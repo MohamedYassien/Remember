@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:remember/model/user_questionnaire.dart';
+import 'package:sticky_headers/sticky_headers.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
@@ -29,7 +30,6 @@ class _QuestionnaireResultScreenState extends State<QuestionnaireResultScreen> {
   @override
   void initState() {
     super.initState();
-    print('widget.elementList[index]${widget.elementList[0]}');
     getQuestionnaire();
   }
 
@@ -55,8 +55,11 @@ class _QuestionnaireResultScreenState extends State<QuestionnaireResultScreen> {
             AppLocalizations.of(context).translate('res_quest'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontFamily: 'Tajawal-Regular',
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+            style: TextStyle(
+                fontFamily: 'Tajawal-Regular',
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18),
           ),
         ),
         body: SafeArea(

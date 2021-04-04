@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:remember/model/actions.dart';
 import 'package:remember/model/points.dart';
 import 'package:remember/ui/admin_screen.dart';
+import 'package:remember/ui/basic_home.dart';
+import 'package:remember/ui/lovers.dart';
 import 'package:remember/ui/my_action.dart';
 import 'package:remember/ui/my_suggestion.dart';
 import 'package:remember/ui/points_details.dart';
@@ -45,134 +47,33 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _onWillPop,
-      child: Scaffold(
-        backgroundColor: backgroundColor2,
-        appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.white),
-            backgroundColor: themeColor,
-            centerTitle: true,
-            elevation: 0,
-            title: Text(
-              AppLocalizations.of(context).translate('Home'),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  fontFamily: 'Tajawal-Regular',
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
-            )),
-        drawer: Drawer(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                child: Text(
-                    AppLocalizations.of(context).translate('side_menu'),
-                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
-                decoration: BoxDecoration(
-                  color: backgroundColor,
-                ),
-              ),
-              ListTile(
-                title: Text(AppLocalizations.of(context).translate('eb'),
-                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-              Divider(
-                height: 2,
-              ),
-              ListTile(
-                title: Text(AppLocalizations.of(context).translate('lovers'),
-                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-              Divider(
-                height: 2,
-              ),
-              ListTile(
-                title: Text(AppLocalizations.of(context).translate('quit'),
-                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => UserQuestionnaireScreen()));
-                },
-              ),
-              Divider(
-                height: 2,
-              ),
-              ListTile(
-                title: Text(AppLocalizations.of(context).translate('sug'),
-                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MySuggestion()));
-                },
-              ),
-              Divider(
-                height: 2,
-              ),
-              ListTile(
-                title: Text(
-                    AppLocalizations.of(context).translate('result_all'),
-                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CompetitorResults()));
-                },
-              ),
-              Divider(
-                height: 2,
-              ),
-              isAdmin
-                  ? ListTile(
-                title:
-                Text(AppLocalizations.of(context).translate('admin'),
-                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AdminPanel()));
-                },
-              )
-                  : SizedBox(),
-              isAdmin
-                  ? Divider(
-                height: 2,
-              )
-                  : SizedBox(),
-              ListTile(
-                title: Text(AppLocalizations.of(context).translate('setting'),
-                    style: TextStyle(fontFamily: 'Tajawal-Regular',)),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-              Divider(
-                height: 2,
-              ),
-            ],
+    return Scaffold(
+      backgroundColor: backgroundColor2,
+      appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BasicHomePage()));
+            },
           ),
-        ),
-        body: buildBody(),
-      ),
+          iconTheme: IconThemeData(color: Colors.white),
+          backgroundColor: themeColor,
+          centerTitle: true,
+          elevation: 0,
+          title: Text(
+            AppLocalizations.of(context).translate('eb'),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontFamily: 'Tajawal-Regular',
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18),
+          )),
+      body: buildBody(),
     );
   }
 

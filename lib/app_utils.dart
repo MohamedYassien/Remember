@@ -76,84 +76,14 @@ Future<String> getUserName() async {
   }
 }
 
-Widget customCard(var obj, BuildContext context, {onTapYes}) {
-  return GestureDetector(
-    onTap: () => onTapYes,
-    child: Container(
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 0.5,
-            blurRadius: 9,
-            offset: Offset(0, 3), // changes position of shadow
-          )
-        ],
-      ),
-      child: ClipPath(
-        clipper: ShapeBorderClipper(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15))),
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(obj.action,
-                    style: TextStyle(fontFamily: 'Tajawal-Regular',
-                        color: Colors.black,
-                        fontSize: 16)),
-              ],
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
-Widget customCardQuestion(var obj, BuildContext context, {onTapYes}) {
-  return GestureDetector(
-    onTap: () => onTapYes,
-    child: Container(
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 0.5,
-            blurRadius: 9,
-            offset: Offset(0, 3), // changes position of shadow
-          )
-        ],
-      ),
-      child: ClipPath(
-        clipper: ShapeBorderClipper(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15))),
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(obj.question,
-                    style: TextStyle(fontFamily: 'Tajawal-Regular',
-                        color: Colors.black,
-                        fontSize: 16)),
-              ],
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
+Future<String> getUid() async {
+  final storage = FlutterSecureStorage();
+  if (storage != null && storage.read(key: 'uid') != null) {
+    String headerToken = await storage.read(key: "uid");
+    return headerToken;
+  } else {
+    return "";
+  }
 }
 
 Widget customCardSuggestion(var obj, BuildContext context, {onTapYes}) {
@@ -184,7 +114,7 @@ Widget customCardSuggestion(var obj, BuildContext context, {onTapYes}) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('${AppLocalizations.of(context).translate(
-                    'username')} :${obj.username}',
+                    'user')} :${obj.username}',
                     style: TextStyle(fontFamily: 'Tajawal-Regular',
                         color: Colors.black,
                         fontSize: 16)),
@@ -198,6 +128,58 @@ Widget customCardSuggestion(var obj, BuildContext context, {onTapYes}) {
                     style: TextStyle(fontFamily: 'Tajawal-Regular',
                         color: Colors.black,
                         fontSize: 16)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget customCardUser(var obj, BuildContext context, {onTapYes}) {
+  return GestureDetector(
+    onTap: () => onTapYes,
+    child: Container(
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 0.5,
+            blurRadius: 9,
+            offset: Offset(0, 3), // changes position of shadow
+          )
+        ],
+      ),
+      child: ClipPath(
+        clipper: ShapeBorderClipper(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15))),
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('${AppLocalizations.of(context).translate(
+                    'user')} :${obj.name}',
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
+                Text('${AppLocalizations.of(context).translate('em')} :${obj
+                    .email}',
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)),
+                obj.phone != null ? Text(
+                    '${AppLocalizations.of(context).translate('phone')} :${obj
+                        .phone}',
+                    style: TextStyle(fontFamily: 'Tajawal-Regular',
+                        color: Colors.black,
+                        fontSize: 16)) : SizedBox(),
               ],
             ),
           ),
@@ -352,44 +334,6 @@ Widget customCardPoint(var obj, BuildContext context, {onTapYes}) {
                     style: TextStyle(fontFamily: 'Tajawal-Regular',
                         color: Colors.black,
                         fontSize: 16)),
-              ],
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
-Widget customCardMyResult(var obj, BuildContext context, {onTapYes}) {
-  return GestureDetector(
-    onTap: () => onTapYes,
-    child: Container(
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 0.5,
-            blurRadius: 9,
-            offset: Offset(0, 3), // changes position of shadow
-          )
-        ],
-      ),
-      child: ClipPath(
-        clipper: ShapeBorderClipper(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15))),
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Column(
-              children: [
-                Text(obj, style: TextStyle(fontFamily: 'Tajawal-Regular',
-                    color: Colors.black,
-                    fontSize: 16)),
               ],
             ),
           ),

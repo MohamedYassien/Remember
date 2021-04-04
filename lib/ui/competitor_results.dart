@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:remember/model/points.dart';
+import 'package:remember/ui/basic_home.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
@@ -45,7 +46,10 @@ class _CompetitorResultsState extends State<CompetitorResults> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => BasicHomePage()));
           },
         ),
         iconTheme: IconThemeData(color: Colors.white),

@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:remember/ui/basic_home.dart';
+import 'package:remember/ui/home_page.dart';
 import 'package:remember/ui/login.dart';
 
 import '../AppLanguage.dart';
@@ -13,10 +16,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   void initState() {
     super.initState();
-      countDownTime();
+    countDownTime();
   }
 
   @override
@@ -43,13 +48,32 @@ class SplashScreenState extends State<SplashScreen> {
   countDownTime() async {
     return Timer(Duration(seconds: splashDuration), () {
       SystemChannels.textInput.invokeMethod('TextInput.hide');
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => LoginScreen(),
-        ),
-            (route) => false,
-      );
+//      Navigator.pushAndRemoveUntil(
+//        context,
+//        MaterialPageRoute(
+//          builder: (BuildContext context) => LoginScreen(),
+//        ),
+//            (route) => false,
+//      );
+      getCurrentUser().then((value) {
+        if (value == null) {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => LoginScreen(),
+            ),
+                (route) => false,
+          );
+        } else {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => BasicHomePage(),
+            ),
+                (route) => false,
+          );
+        }
+      });
     });
   }
 
@@ -79,8 +103,8 @@ class SplashScreenState extends State<SplashScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  string,
-                  maxLines: 4,
+                    string,
+                    maxLines: 4,
 //                    '${AppLocalizations.of(context).translate('node')} :${obj.node}',
                     style: TextStyle(
                         color: Colors.black, fontFamily: 'Tajawal-Regular',
@@ -93,5 +117,14 @@ class SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  Future<User> getCurrentUser() async {
+    User user = _auth.currentUser;
+
+    if (user != null) {
+      return user;
+    } else {
+      return null;
+    }
+  }
 
 }
