@@ -4,15 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
-import 'package:remember/model/actions.dart';
-import 'package:remember/model/points.dart';
 import 'package:remember/ui/admin_screen.dart';
 import 'package:remember/ui/home_page.dart';
+import 'package:remember/ui/login.dart';
 import 'package:remember/ui/lovers.dart';
-import 'package:remember/ui/my_action.dart';
 import 'package:remember/ui/my_suggestion.dart';
-import 'package:remember/ui/points_details.dart';
 import 'package:remember/ui/user_questionair_screen.dart';
 
 import '../AppLocalizations.dart';
@@ -165,8 +161,7 @@ class _BasicHomePageState extends State<BasicHomePage> {
                       fontFamily: 'Tajawal-Regular',
                     )),
                 onTap: () {
-                  // Update the state of the app.
-                  // ...
+                  _signOut();
                 },
               ),
               Divider(
@@ -361,5 +356,13 @@ class _BasicHomePageState extends State<BasicHomePage> {
         );
       },
     );
+  }
+
+  Future<void> _signOut() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => LoginScreen()));
   }
 }

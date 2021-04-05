@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:remember/app_constants.dart';
 import 'package:remember/ui/basic_home.dart';
-import 'package:remember/ui/home_page.dart';
+import 'package:remember/ui/reset_pass.dart';
 import 'package:remember/ui/sign_up.dart';
 
 import '../AppLocalizations.dart';
@@ -199,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         setState(() {
                           isLoading = true;
                         });
-                        FocusScope.of(context).requestFocus(focus);
+                        FocusScope.of(context).requestFocus(FocusNode());
                         FirebaseAuth.instance
                             .signInWithEmailAndPassword(
                             email: _textEditingControllerUser.text,
@@ -275,6 +275,30 @@ class _LoginScreenState extends State<LoginScreen> {
                                         fontWeight: FontWeight.bold),
                                   )),
                             ))),
+                  ),
+                  GestureDetector(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 10),
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: AppLocalizations.of(context)
+                                  .translate('Change_Password'),
+                              style: TextStyle(
+                                  fontFamily: 'Tajawal-Regular',
+                                  decoration: TextDecoration.underline,
+                                  color: Color(0xFF0F2E48),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16)),
+                        ]),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_buildContext) => ResetPassScreen()));
+                    },
                   ),
                   GestureDetector(
                     child: Padding(
