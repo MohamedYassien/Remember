@@ -7,17 +7,12 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:remember/model/actions.dart';
 import 'package:remember/model/points.dart';
-import 'package:remember/ui/admin_screen.dart';
 import 'package:remember/ui/basic_home.dart';
-import 'package:remember/ui/lovers.dart';
 import 'package:remember/ui/my_action.dart';
-import 'package:remember/ui/my_suggestion.dart';
 import 'package:remember/ui/points_details.dart';
-import 'package:remember/ui/user_questionair_screen.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
-import 'competitor_results.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -48,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor2,
+      backgroundColor: themeColor,
       appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -60,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: themeColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

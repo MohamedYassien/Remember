@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:remember/ui/basic_home.dart';
-import 'package:remember/ui/home_page.dart';
 import 'package:remember/ui/login.dart';
 
 import '../AppLanguage.dart';
@@ -30,16 +29,11 @@ class SplashScreenState extends State<SplashScreen> {
     appLanguage.changeLanguage(Locale("ar"));
     return Stack(children: <Widget>[
       Image.asset(
-        'assets/ic_splash.png',
+        'assets/ic_sp.png',
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         fit: BoxFit.fill,
       ),
-      Positioned(
-        width: MediaQuery.of(context).size.width,
-        top: MediaQuery.of(context).size.height*.8,
-        child: textCard('تلاقينا بدرب الله, تعارفنا لأجل الله,تواصينا بتقوى الله, تحصنا بذكر الله.لعلهم يتذكرون💜صحبة تأخذك للجنة.تغدوا رفاتا ويبقى الأثر'),
-      )
     ]);
   }
 

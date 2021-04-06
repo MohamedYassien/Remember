@@ -28,7 +28,7 @@ class _PointsDetailsState extends State<PointsDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor2,
+      backgroundColor: themeColor,
       appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -37,7 +37,7 @@ class _PointsDetailsState extends State<PointsDetails> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: themeColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

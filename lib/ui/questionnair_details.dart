@@ -43,7 +43,7 @@ class _QuestionnairDetailsState extends State<QuestionnairDetails> {
               },
             ),
             iconTheme: IconThemeData(color: Colors.white),
-            backgroundColor: themeColor,
+            backgroundColor: backgroundColor,
             centerTitle: true,
             elevation: 0,
             title: Text(
@@ -101,6 +101,7 @@ class _QuestionnairDetailsState extends State<QuestionnairDetails> {
                               },
                               enabled: isEnableName,
                               controller: this._textEditingControllerName,
+                              maxLines: 10,
                               keyboardType: TextInputType.text,
                               style: TextStyle(fontFamily: 'Tajawal-Regular',
                                   color: Color(0xFF0F2E48), fontSize: 14),

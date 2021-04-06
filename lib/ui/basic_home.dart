@@ -5,10 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:remember/ui/admin_screen.dart';
+import 'package:remember/ui/available_suggestions.dart';
 import 'package:remember/ui/home_page.dart';
 import 'package:remember/ui/login.dart';
 import 'package:remember/ui/lovers.dart';
-import 'package:remember/ui/my_suggestion.dart';
 import 'package:remember/ui/user_questionair_screen.dart';
 
 import '../AppLocalizations.dart';
@@ -38,7 +38,7 @@ class _BasicHomePageState extends State<BasicHomePage> {
         backgroundColor: remWhite,
         appBar: AppBar(
             iconTheme: IconThemeData(color: Colors.white),
-            backgroundColor: themeColor,
+            backgroundColor: backgroundColor,
             centerTitle: true,
             elevation: 0,
             title: Text(
@@ -113,7 +113,8 @@ class _BasicHomePageState extends State<BasicHomePage> {
                     )),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MySuggestion()));
+                      MaterialPageRoute(
+                          builder: (context) => AvilableSuggestionsScreen()));
                 },
               ),
               Divider(
@@ -222,13 +223,13 @@ class _BasicHomePageState extends State<BasicHomePage> {
                 Expanded(
                     child: InkWell(
                   onTap: () {
-                    print('index : $index');
                     switch (index) {
                       case 0:
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MySuggestion()));
+                                builder: (context) =>
+                                    AvilableSuggestionsScreen()));
                         break;
                       case 1:
                         Navigator.push(

@@ -1,28 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:remember/model/questionnaire.dart';
+import 'package:remember/model/questions.dart';
 import 'package:remember/ui/admin_screen.dart';
-import 'package:remember/ui/questionnair_details.dart';
-import 'package:remember/ui/questionnair_result.dart';
+import 'package:remember/ui/basic_home.dart';
+import 'package:remember/ui/my_suggestion.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
 
-class QuestionnaireScreen extends StatefulWidget {
+class AvilableSuggestionsScreen extends StatefulWidget {
   @override
-  _QuestionnaireScreenState createState() => _QuestionnaireScreenState();
+  _AvilableSuggestionsScreenState createState() =>
+      _AvilableSuggestionsScreenState();
 }
 
-class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
+class _AvilableSuggestionsScreenState extends State<AvilableSuggestionsScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   bool isLoading = false;
   bool hasData = false;
-  List<QuestionnaireModel> questionnaireList = [];
+  List<Questions> suggestionList = [];
 
   @override
   void initState() {
     super.initState();
-    getQuestionnaire();
+    getSuggestions();
   }
 
   @override
@@ -37,7 +38,7 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
             icon: Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => AdminPanel()));
+                  MaterialPageRoute(builder: (context) => BasicHomePage()));
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
@@ -45,22 +46,15 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
           centerTitle: true,
           elevation: 0,
           title: Text(
-            AppLocalizations.of(context).translate('add_quest'),
+            AppLocalizations.of(context).translate('my_sug'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontFamily: 'Tajawal-Regular',
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+            style: TextStyle(
+                fontFamily: 'Tajawal-Regular',
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18),
           ),
-          actions: [
-            IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => QuestionnairDetails()));
-                })
-          ],
         ),
         body: SafeArea(
           child: !isLoading
@@ -68,12 +62,12 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
               : hasData
                   ? Column(
                       children: [
-                        questionnaireListWidget(context, questionnaireList),
+                        suggestionListWidget(context, suggestionList),
                       ],
                     )
                   : Center(
                       child: Text(
-                          AppLocalizations.of(context).translate('no_quest')),
+                          AppLocalizations.of(context).translate('no_sugg')),
                     ),
         ),
       ),
@@ -86,8 +80,7 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
     return Future(() => false);
   }
 
-  Widget questionnaireListWidget(
-      BuildContext context, List<QuestionnaireModel> _list) {
+  Widget suggestionListWidget(BuildContext context, List<Questions> _list) {
     // backing data
     final size = MediaQuery.of(context).size;
     return Expanded(
@@ -103,25 +96,20 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
     );
   }
 
-  void getQuestionnaire() {
+  void getSuggestions() {
     FirebaseFirestore.instance
-        .collection("questionnaires")
+        .collection("suggestions")
         .get()
         .then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
         print(result.data());
-        List<String> elementList = [];
-        elementList.clear();
-        result.data()["element"].forEach((i) {
-          elementList.add(i);
-//                  print('profile$elementList');
-        });
         setState(() {
-          questionnaireList.add(QuestionnaireModel(
-              question: result.data()["question"], element: elementList));
+          suggestionList.add(Questions(
+              question: result.data()["suggestion"],
+              date: result.data()["date"]));
         });
       });
-      if (questionnaireList.isNotEmpty) {
+      if (suggestionList.isNotEmpty) {
         setState(() {
           hasData = true;
           isLoading = true;
@@ -161,8 +149,9 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
             child: Container(
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(5),
-              child: Text(questionnaireList[index].question,
-                  style: TextStyle(fontFamily: 'Tajawal-Regular',
+              child: Text(suggestionList[index].question,
+                  style: TextStyle(
+                      fontFamily: 'Tajawal-Regular',
                       color: Colors.black,
                       fontSize: 16)),
             ),
@@ -172,9 +161,8 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => QuestionnaireResultScreen(
-                        questionnaire: questionnaireList[index].question,
-                        elementList: questionnaireList[index].element,
+                  builder: (context) => MySuggestion(
+                        adminSuggestions: suggestionList[index],
                       )));
         });
   }

@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
       key: scaffoldKey,
       appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: backgroundColor,
+          backgroundColor: themeColor,
           centerTitle: true,
           elevation: 0,
           title: Text(
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Container(
               height: MediaQuery.of(context).size.height * 0.7,
               width: MediaQuery.of(context).size.width,
-              color: backgroundColor,
+              color: themeColor,
             ),
           ),
           Align(
@@ -256,7 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40),
                             ),
-                            color: backgroundColor,
+                            color: themeColor,
                             child: Padding(
                               padding:
                               const EdgeInsets.symmetric(horizontal: 10),

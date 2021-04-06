@@ -50,7 +50,7 @@ class _ActionDetailsState extends State<ActionDetails> {
               },
             ),
             iconTheme: IconThemeData(color: Colors.white),
-            backgroundColor: themeColor,
+            backgroundColor: backgroundColor,
             centerTitle: true,
             elevation: 0,
             title: Text(

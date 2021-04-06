@@ -47,7 +47,7 @@ class _MyQuestionnairState extends State<MyQuestionnair> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: backgroundColor2,
+      backgroundColor: themeColor,
       appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -56,7 +56,7 @@ class _MyQuestionnairState extends State<MyQuestionnair> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: themeColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(
@@ -248,12 +248,6 @@ class _MyQuestionnairState extends State<MyQuestionnair> {
 
   Future<void> initView() async {
     getMyQuestion();
-//    print('77777: $elementList');
-//    setState(() {
-//      for (var i = 0; i < elementList.length; i++) {
-//        values[i] = false;
-//      }
-//    });
     DateTime now = DateTime.now();
     var formatter = new DateFormat('yyyy-MM-dd hh:mm:ss');
     setState(() {

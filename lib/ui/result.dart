@@ -36,7 +36,7 @@ class _MyResultState extends State<MyResult> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        backgroundColor: backgroundColor2,
+        backgroundColor: themeColor,
         appBar: AppBar(
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
@@ -46,7 +46,7 @@ class _MyResultState extends State<MyResult> {
               },
             ),
             iconTheme: IconThemeData(color: Colors.white),
-            backgroundColor: themeColor,
+            backgroundColor: backgroundColor,
             centerTitle: true,
             elevation: 0,
             title: Text(

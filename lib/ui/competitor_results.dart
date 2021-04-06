@@ -41,7 +41,7 @@ class _CompetitorResultsState extends State<CompetitorResults> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor2,
+      backgroundColor: themeColor,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -53,7 +53,7 @@ class _CompetitorResultsState extends State<CompetitorResults> {
           },
         ),
         iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: themeColor,
+        backgroundColor: backgroundColor,
         centerTitle: true,
         elevation: 0,
         title: Text(

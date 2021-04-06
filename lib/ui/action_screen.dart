@@ -7,7 +7,6 @@ import 'package:remember/ui/admin_screen.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
-import '../app_utils.dart';
 
 class AddActionScreen extends StatefulWidget {
   @override
@@ -31,7 +30,7 @@ class _AddActionScreenState extends State<AddActionScreen> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        backgroundColor: backgroundColor2,
+        backgroundColor: themeColor,
         key: scaffoldKey,
         appBar: AppBar(
           leading: IconButton(
@@ -46,7 +45,7 @@ class _AddActionScreenState extends State<AddActionScreen> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: themeColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

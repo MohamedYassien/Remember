@@ -1,12 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:remember/app_constants.dart';
-import 'package:remember/ui/basic_home.dart';
-import 'package:remember/ui/home_page.dart';
-import 'package:remember/ui/login.dart';
-import 'package:remember/ui/sign_up.dart';
 
 import '../AppLocalizations.dart';
 import '../app_utils.dart';
@@ -30,7 +25,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
       key: scaffoldKey,
       appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: backgroundColor,
+          backgroundColor: themeColor,
           centerTitle: true,
           elevation: 0,
           title: Text(
@@ -50,7 +45,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
             child: Container(
               height: MediaQuery.of(context).size.height * 0.7,
               width: MediaQuery.of(context).size.width,
-              color: backgroundColor,
+              color: themeColor,
             ),
           ),
           Align(
@@ -168,7 +163,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(40),
                               ),
-                              color: backgroundColor,
+                              color: themeColor,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),

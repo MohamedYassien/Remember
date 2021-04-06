@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:remember/model/user_questionnaire.dart';
-import 'package:sticky_headers/sticky_headers.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
@@ -39,7 +38,7 @@ class _QuestionnaireResultScreenState extends State<QuestionnaireResultScreen> {
       onWillPop: _onWillPop,
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: backgroundColor2,
+        backgroundColor: themeColor,
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -48,7 +47,7 @@ class _QuestionnaireResultScreenState extends State<QuestionnaireResultScreen> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: themeColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

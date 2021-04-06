@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:remember/model/questions.dart';
 import 'package:remember/ui/admin_screen.dart';
 import 'package:remember/ui/suggestion_details.dart';
+import 'package:remember/ui/suggestion_edit.dart';
 import 'package:remember/ui/user_suggestion.dart';
 
 import '../AppLocalizations.dart';
@@ -31,7 +32,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
       onWillPop: _onWillPop,
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: backgroundColor2,
+        backgroundColor: themeColor,
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -45,7 +46,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: themeColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(
@@ -163,10 +164,25 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
             child: Container(
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(5),
-              child: Text(suggestionList[index].question,
-                  style: TextStyle(fontFamily: 'Tajawal-Regular',
-                      color: Colors.black,
-                      fontSize: 16)),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Text(suggestionList[index].question,
+                        style: TextStyle(fontFamily: 'Tajawal-Regular',
+                            color: Colors.black,
+                            fontSize: 16)),
+                  ),
+                  Align(alignment: Alignment.topLeft,
+                      child: IconButton(icon: Icon(Icons.edit), onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) =>
+                                SuggestionEdit(
+                                  adminSuggestions: suggestionList[index],
+                                )));
+                      }))
+                ],
+              ),
             ),
           ),
         ),

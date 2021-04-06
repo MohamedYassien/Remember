@@ -21,7 +21,7 @@ class _AdminPanelState extends State<AdminPanel> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        backgroundColor: backgroundColor2,
+        backgroundColor: themeColor,
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -35,7 +35,7 @@ class _AdminPanelState extends State<AdminPanel> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: themeColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

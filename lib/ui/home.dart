@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:remember/ui/login.dart';
 import 'package:remember/ui/sign_up.dart';
+
 import '../AppLanguage.dart';
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
@@ -29,7 +30,7 @@ class _HomeState extends State<Home> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        backgroundColor: backgroundColor,
+        backgroundColor: themeColor,
         body: SafeArea(
           top: true,
           bottom: false,

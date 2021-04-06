@@ -1,21 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:remember/model/questions.dart';
 import 'package:remember/ui/suggestions_screen.dart';
 
 import '../AppLocalizations.dart';
 import '../app_constants.dart';
 
-class SuggestionDetails extends StatefulWidget {
+class SuggestionEdit extends StatefulWidget {
+  Questions adminSuggestions;
+
+  SuggestionEdit({this.adminSuggestions});
+
   @override
-  _SuggestionDetailsState createState() => _SuggestionDetailsState();
+  _SuggestionEditState createState() => _SuggestionEditState();
 }
 
-class _SuggestionDetailsState extends State<SuggestionDetails> {
+class _SuggestionEditState extends State<SuggestionEdit> {
   final GlobalKey<FormState> _detailsFormKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController _textEditingControllerName = TextEditingController();
   bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.adminSuggestions != null) {
+      _textEditingControllerName.text = widget.adminSuggestions.question;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +43,7 @@ class _SuggestionDetailsState extends State<SuggestionDetails> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            SuggestionsScreen(
-                            )));
+                        builder: (context) => SuggestionsScreen()));
               },
             ),
             iconTheme: IconThemeData(color: Colors.white),
@@ -43,7 +54,8 @@ class _SuggestionDetailsState extends State<SuggestionDetails> {
               AppLocalizations.of(context).translate('sug_det'),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontFamily: 'Tajawal-Regular',
+              style: TextStyle(
+                  fontFamily: 'Tajawal-Regular',
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
@@ -64,14 +76,8 @@ class _SuggestionDetailsState extends State<SuggestionDetails> {
                       Container(
                         padding: EdgeInsets.all(10),
                         margin: EdgeInsets.fromLTRB(10, 20, 10, 40),
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * .2,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * .2,
                         child: TextFormField(
                             validator: (value) {
                               if (value.length < 3) {
@@ -84,50 +90,51 @@ class _SuggestionDetailsState extends State<SuggestionDetails> {
                             controller: this._textEditingControllerName,
                             keyboardType: TextInputType.text,
                             maxLines: 20,
-                            style:
-                            TextStyle(
-                                fontFamily: 'Tajawal-Regular', color: Color(
-                                0xFF0F2E48), fontSize: 14),
+                            style: TextStyle(
+                                fontFamily: 'Tajawal-Regular',
+                                color: Color(0xFF0F2E48),
+                                fontSize: 14),
                             autofocus: false,
                             decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(25),
                                     borderSide:
-                                    BorderSide(color: Color(0xFFAAB5C3))),
+                                        BorderSide(color: Color(0xFFAAB5C3))),
                                 fillColor: Color(0xFFF3F3F5),
                                 focusColor: Color(0xFFF3F3F5),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(25),
                                     borderSide:
-                                    BorderSide(color: Color(0xFFAAB5C3))),
+                                        BorderSide(color: Color(0xFFAAB5C3))),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(25),
                                     borderSide:
-                                    BorderSide(color: backgroundColor)),
+                                        BorderSide(color: backgroundColor)),
                                 hintText: AppLocalizations.of(context)
                                     .translate('name_sugg'))),
                       ),
                       Container(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * .5,
+                          width: MediaQuery.of(context).size.width * .5,
                           child: RaisedButton(
                               color: themeColor,
-                              child: isLoading ? CircularProgressIndicator(
-                                backgroundColor: remWhite,
-                              ) : Text(
-                                AppLocalizations.of(context).translate('save'),
-                                style: TextStyle(fontFamily: 'Tajawal-Regular',
-                                    color: remWhite),
-                              ),
+                              child: isLoading
+                                  ? CircularProgressIndicator(
+                                      backgroundColor: remWhite,
+                                    )
+                                  : Text(
+                                      AppLocalizations.of(context)
+                                          .translate('save'),
+                                      style: TextStyle(
+                                          fontFamily: 'Tajawal-Regular',
+                                          color: remWhite),
+                                    ),
                               onPressed: () {
                                 if (_detailsFormKey.currentState.validate()) {
                                   FocusScope.of(context).requestFocus();
                                   setState(() {
                                     isLoading = true;
                                   });
-                                  addSuggestion();
+                                  updateSuggestion();
                                 }
                               }))
                     ],
@@ -142,19 +149,22 @@ class _SuggestionDetailsState extends State<SuggestionDetails> {
   void _showToast(String message) {
     scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text(message,
-            style: TextStyle(fontFamily: 'Tajawal-Regular',
+            style: TextStyle(
+              fontFamily: 'Tajawal-Regular',
               fontSize: chat_text_font_size,
               fontWeight: FontWeight.normal,
             ))));
   }
 
-  void addSuggestion() {
+  void updateSuggestion() {
     DateTime now = DateTime.now();
     var formatter = new DateFormat('yyyy-MM-dd');
     String date = formatter.format(now);
-    FirebaseFirestore.instance.collection("suggestions").doc(date).set({
+    FirebaseFirestore.instance
+        .collection("suggestions")
+        .doc(widget.adminSuggestions.date)
+        .update({
       "suggestion": _textEditingControllerName.text,
-      "date": date,
     }).then((_) {
       setState(() {
         isLoading = false;
@@ -172,11 +182,7 @@ class _SuggestionDetailsState extends State<SuggestionDetails> {
 
   Future<bool> _onWillPop() {
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                SuggestionsScreen(
-                )));
+        context, MaterialPageRoute(builder: (context) => SuggestionsScreen()));
     return Future(() => false);
   }
 }

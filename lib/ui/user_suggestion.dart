@@ -31,7 +31,7 @@ class _UserSuggestionsState extends State<UserSuggestions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor2,
+      backgroundColor: themeColor,
       key: scaffoldKey,
       appBar: AppBar(
           leading: IconButton(
@@ -41,7 +41,7 @@ class _UserSuggestionsState extends State<UserSuggestions> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: themeColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(
@@ -62,8 +62,9 @@ class _UserSuggestionsState extends State<UserSuggestions> {
                   )
                 : Center(
                     child:
-                    Text(AppLocalizations.of(context).translate('no_sugg'),
-                      style: TextStyle(fontFamily: 'Tajawal-Regular',),),
+                    Text(AppLocalizations.of(context).translate('no_add_sugg'),
+                      style: TextStyle(
+                          fontFamily: 'Tajawal-Regular', color: remWhite),),
                   ),
       ),
     );

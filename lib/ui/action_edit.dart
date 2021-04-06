@@ -68,7 +68,7 @@ class _ActionEditState extends State<ActionEdit> {
               },
             ),
             iconTheme: IconThemeData(color: Colors.white),
-            backgroundColor: themeColor,
+            backgroundColor: backgroundColor,
             centerTitle: true,
             elevation: 0,
             title: Text(

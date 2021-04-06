@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:remember/model/suggestions.dart';
 import 'package:remember/model/user.dart';
 import 'package:remember/ui/basic_home.dart';
 
@@ -28,7 +26,7 @@ class _LoversState extends State<Lovers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor2,
+      backgroundColor: themeColor,
       key: scaffoldKey,
       appBar: AppBar(
           leading: IconButton(
@@ -39,7 +37,7 @@ class _LoversState extends State<Lovers> {
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: themeColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(

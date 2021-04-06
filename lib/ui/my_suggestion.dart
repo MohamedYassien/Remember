@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:remember/model/questions.dart';
+import 'package:remember/ui/available_suggestions.dart';
 import 'package:remember/ui/basic_home.dart';
 
 import '../AppLocalizations.dart';
@@ -9,6 +11,10 @@ import '../app_constants.dart';
 import '../app_utils.dart';
 
 class MySuggestion extends StatefulWidget {
+  Questions adminSuggestions;
+
+  MySuggestion({this.adminSuggestions});
+
   @override
   _MySuggestionState createState() => _MySuggestionState();
 }
@@ -40,15 +46,15 @@ class _MySuggestionState extends State<MySuggestion> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => BasicHomePage()));
+                      builder: (context) => AvilableSuggestionsScreen()));
             },
           ),
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: themeColor,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           elevation: 0,
           title: Text(
-            AppLocalizations.of(context).translate('sug'),
+            AppLocalizations.of(context).translate('sugg'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(fontFamily: 'Tajawal-Regular',
@@ -69,10 +75,17 @@ class _MySuggestionState extends State<MySuggestion> {
                   Form(
                       key: _detailsFormKey,
                       child: !hasData
-                          ? Center(
-                              child: Text(AppLocalizations.of(context)
-                                  .translate('no_sugg')),
-                            )
+                          ? Container(
+                        margin: EdgeInsets.only(top: 150),
+                        child: Center(
+                          child: Text(AppLocalizations.of(context)
+                              .translate('no_sugg'),
+                            style: TextStyle(
+                                fontFamily: 'Tajawal-Regular',
+                                color: Color(0xFF0F2E48),
+                                fontSize: 20),),
+                        ),
+                      )
                           : Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,7 +93,10 @@ class _MySuggestionState extends State<MySuggestion> {
                               children: <Widget>[
                                 Container(
                                   margin: EdgeInsets.all(10),
-                                  child: Text(question),
+                                  child: Text(question, style: TextStyle(
+                                      fontFamily: 'Tajawal-Regular',
+                                      color: Color(0xFF0F2E48),
+                                      fontSize: 18),),
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(10),
@@ -100,6 +116,7 @@ class _MySuggestionState extends State<MySuggestion> {
                                       controller:
                                           this._textEditingControllerName,
                                       keyboardType: TextInputType.text,
+                                      maxLines: 20,
                                       style: TextStyle(
                                           fontFamily: 'Tajawal-Regular',
                                           color: Color(0xFF0F2E48),
@@ -124,7 +141,7 @@ class _MySuggestionState extends State<MySuggestion> {
                                               borderSide: BorderSide(
                                                   color: backgroundColor)),
                                           hintText: AppLocalizations.of(context)
-                                              .translate('name_sugg'))),
+                                              .translate('name_sugg'),)),
                                 ),
                                 Container(
                                     width:
@@ -132,7 +149,9 @@ class _MySuggestionState extends State<MySuggestion> {
                                     child: RaisedButton(
                                         color: themeColor,
                                         child: isLoadingButton
-                                            ? (CircularProgressIndicator())
+                                            ? (CircularProgressIndicator(
+                                          backgroundColor: remWhite,
+                                        ))
                                             : Text(
                                                 AppLocalizations.of(context)
                                                     .translate('save'),
@@ -171,7 +190,8 @@ class _MySuggestionState extends State<MySuggestion> {
         .get()
         .then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
-        if (result.id.contains(date)) {
+        if (result.id.contains(date) &&
+            result.data()['suggestion'] == widget.adminSuggestions.question) {
           print(result.data());
           setState(() {
             question = result.data()["suggestion"];

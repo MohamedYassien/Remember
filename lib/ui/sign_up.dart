@@ -39,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       key: scaffoldKey,
       appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: backgroundColor,
+          backgroundColor: themeColor,
           centerTitle: true,
           elevation: 0,
           title: Text(
@@ -57,7 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Container(
               height: MediaQuery.of(context).size.height * 0.7,
               width: MediaQuery.of(context).size.width,
-              color: backgroundColor,
+              color: themeColor,
             ),
           ),
           Align(
@@ -368,7 +368,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40),
                     ),
-                    color: backgroundColor,
+                    color: themeColor,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Center(
